@@ -3,12 +3,19 @@ import User from "@/models/user";
 import { NextResponse } from "next/server";
 
 
-export const dynamic = "force-dynamic";
-
-export async function GET() {
+export async function GET(request) {
     await connectDB()
 
-    const users = await User.find()
+    const { name } = request;
+
+    let users;
+
+    if (name.id) {
+        users = await User.findById(name.id)
+    } else {
+        users = await User.find
+    }
+
     return NextResponse.json(users)
 
 }
