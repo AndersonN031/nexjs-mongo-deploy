@@ -1,10 +1,7 @@
 import mongoose from "mongoose";
 
-export default async function connectDB() {
-    await mongoose.connect(process.env.MONGODB_URL, {
-        family: 4
-    })
-
+export default function connectDB() {
+    mongoose.connect("mongodb://127.0.0.1:27017")
         .then(() => {
             console.log("FINE");
         })
