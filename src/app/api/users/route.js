@@ -1,21 +1,11 @@
+import { NextResponse } from "next/server";
 import connectDB from "../../../libs/mongodb";
 import User from "@/models/user";
-import { NextResponse } from "next/server";
 
-
-export async function GET(request) {
+export async function GET() {
     await connectDB()
 
-    const { name } = request;
-
-    let users;
-
-    if (name.id) {
-        users = await User.findById(name.id)
-    } else {
-        users = await User.find
-    }
-
+    const users = await User.find()
     return NextResponse.json(users)
 
 }
