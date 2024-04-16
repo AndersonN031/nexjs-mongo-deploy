@@ -15,7 +15,12 @@ export default async function Home() {
   return (
     <div>
       <h1>Users</h1>
-      <pre>{JSON.stringify(users, null, 2)}</pre>
+      {users.map((user, i) => (
+        <div key={i}>
+          <p>Nome :{user.name}</p>
+          <p>Idade: {user.age} anos</p>
+        </div>
+      ))}
     </div>
   )
 }
