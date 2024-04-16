@@ -4,7 +4,7 @@ import User from "@/models/user"
 
 async function loadUsers() {
   await connectDB()
-  const users = await User.find()
+  const users = User.find()
   return users
 }
 
