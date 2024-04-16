@@ -1,5 +1,5 @@
 
-import { connectDB } from "@/libs/mongodb"
+import connectDB from "@/libs/mongodb"
 import User from "@/models/user"
 
 async function loadUsers() {
