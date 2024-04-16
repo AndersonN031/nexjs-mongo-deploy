@@ -4,7 +4,6 @@ import User from "@/models/user";
 
 export async function GET() {
     await connectDB()
-
     const users = await User.find()
     return NextResponse.json(users)
 
