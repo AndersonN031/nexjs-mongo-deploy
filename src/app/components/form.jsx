@@ -11,10 +11,10 @@ const ProductForm = () => {
         event.preventDefault();
 
         try {
+            // POST para a rota /api/products onde contém nosso GET e POST
             const response = await axios.post('/api/products', {
                 name: productName,
                 price: productPrice
-                // Adicione aqui os outros campos do produto, se houver
             });
 
             console.log('Produto adicionado:', response.data);

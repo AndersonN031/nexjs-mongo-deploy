@@ -1,7 +1,7 @@
 
 import connectDB from "@/libs/mongodb"
 import Product from "@/models/product"
-import Form from "../components/form";
+
 
 export const dynamic = 'force-dynamic';
 
@@ -20,7 +20,7 @@ export default async function Home() {
     return (
         <div>
             <h1>Produtos</h1>
-            <Form />
+            
             {products.map((product, i) => (
                 <div key={i}>
                     <p>Nome :{product.name}</p>
