@@ -5,4 +5,4 @@ const schema = new mongoose.Schema({
     age: String
 })
 
-export default mongoose.models.User || mongoose.model('User', schema)
+export default mongoose.models.Product || mongoose.model('Product', schema)

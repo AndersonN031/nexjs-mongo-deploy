@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import connectDB from "../../../libs/mongodb";
-import User from "@/models/user";
+import Product from "@/models/product";
 
 export async function GET() {
     await connectDB()
-    const users = await User.find()
-    return NextResponse.json(users)
+    const products = await Product.find()
+    return NextResponse.json(products)
 
 }
 
@@ -13,6 +13,6 @@ export async function POST(request) {
     await connectDB()
     const data = await request.json()
 
-    const users = await User.create(data)
-    return NextResponse.json(users)
+    const products = await Product.create(data)
+    return NextResponse.json(products)
 }
