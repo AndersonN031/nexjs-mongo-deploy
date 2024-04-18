@@ -2,7 +2,47 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+
+/* HEADER CONTAINER */
+
+.header {
+    background-color: #1976D2;
+    color: #fff;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar ul li {
+    margin-right: 1rem;
+}
+
+.navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar ul li a:hover {
+    text-decoration: underline;
+}
+
+/* HOME CONTAINER */
 
 .container {
     height: 100vh;
@@ -33,6 +73,8 @@
     color: #fff;
 }
 
+/* DASHBOARD CONTAINER */
+
 .container-dashboard {
     display: flex;
     flex-direction: row;
@@ -45,23 +87,30 @@
 }
 
 .card {
-    /* Estilos para os cards */
+    background-color: #37474F;
+    color: #000;
     width: calc(25% - 20px);
-    /* Define a largura dos cards para ocupar 25% do espaço disponível na linha */
     margin: 10px;
     padding: 40px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
     box-sizing: border-box;
 }
 
-
+/* MENU CONTAINER */
 
 .menu {
     width: 300px;
-    background-color: #f2f2f2;
-    height: 81vh;
+    background-color: #455A64;
+    height: 75vh;
+    /* padding: 20px; */
+}
+
+.title-menu {
+    text-align: center;
     padding: 20px;
+    color: #fff;
+    background-color: #455A64;
 }
 
 .menu ul {
@@ -71,18 +120,49 @@
 }
 
 .menu ul li {
-    margin-bottom: 15px;
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    gap: 10px;
+    background-color: #37474F;
+    cursor: pointer;
+    transition: .1s;
+}
+
+.menu ul li:hover {
+    border-left: 3px solid #1976D2;
+    background-color: #37474f9f;
 }
 
 .menu ul li a {
+
     text-decoration: none;
-    color: #333;
+    color: #fff;
+    font-size: 19px;
 }
 
 .menu ul li a:hover {
-    color: #555;
+    color: #fff;
 }
 
 i {
-    color: #333;
+    color: #fff;
+}
+
+.footer-menu {
+    background-color: #37474F;
+    margin-top: 105%;
+}
+
+.footer-menu p {
+    font-size: 30px;
+    padding: 5px 10px;
+    color: #455A64;
+}
+
+.grid-dashboard {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr;
 }

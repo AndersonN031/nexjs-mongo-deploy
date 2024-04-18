@@ -1,4 +1,6 @@
 
+import DashboardComponent from "@/app/components/DashboardComponent";
+import HeaderComponent from "@/app/components/HeaderComponent";
 import connectDB from "@/libs/mongodb"
 import Product from "@/models/product"
 
@@ -14,20 +16,22 @@ async function loadUsers() {
 
 export default async function Home() {
     const products = await loadUsers()
-    console.log(products)
-    const collectionName = Product.collection.name
-    console.log("Nome da coleção: ", collectionName)
     return (
-        <div>
-            <h1>Produtos</h1>
-            
-            {products.map((product, i) => (
-                <div key={i}>
-                    <p>Nome :{product.name}</p>
-                    <p>R$: {product.price} </p>
+        <>
+            <HeaderComponent />
+            <DashboardComponent>
+                <div>
+                    <h1>Produtos</h1>
+                    {products.map((product, i) => (
+                        <div key={i}>
+                            <p>Nome :{product.name}</p>
+                            <p>R$: {product.price} </p>
+                        </div>
+                    ))}
                 </div>
-            ))}
-        </div>
+
+            </DashboardComponent>
+        </>
     )
 }
 
