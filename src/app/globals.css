@@ -88,7 +88,7 @@
 
 .card {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     flex-direction: column;
     background-color: #37474F;
     color: #ddd;
@@ -170,7 +170,7 @@ i {
 .grid-dashboard {
     display: grid;
 
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 6fr;
 }
 
 /* FORMULARIO */
@@ -200,12 +200,77 @@ input[type="date"] {
     font-size: 16px;
 }
 
-/* Estilos para o botão */
-button {
+.btn-submit {
     display: block;
     width: 100%;
-    padding: 10px;
-    background-color: #007bff;
+    padding: 15px;
+    background-color: #1976D2;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.btn-submit:hover {
+    background-color: #1565C0;
+    transform: scale(1.01);
+}
+
+.container-form {
+    margin-top: 50px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* PRODUCTS */
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.product-table th,
+.product-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.product-table th {
+    background-color: #455A64;
+    color: #fff;
+}
+
+.product-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.product-table tbody tr:hover {
+    background-color: #ddd;
+}
+
+.td-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 5px;
+
+}
+
+.product-table .td-btn {
+    border: 1px solid #ddd;
+}
+
+.td-btn button {
+    display: block;
+    width: 100%;
+    padding: 5px;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -213,18 +278,32 @@ button {
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #0056b3;
+.td-btn .show-btn {
+    background-color: #6ea2ff;
+    transition: .2s ease;
+    width: 30%;
 }
 
-/* Estilos para o contêiner do formulário */
-.container-form {
-    margin-top: 50px;
-    /* text-align: center; */
+.td-btn .show-btn:hover {
+    transform: scale(1.05);
 }
 
-/* Estilos para o título do formulário */
-h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
+.td-btn .update-btn {
+    background-color: #6bbf59;
+    transition: .2s ease;
+    width: 30%;
+}
+
+.td-btn .update-btn:hover {
+    transform: scale(1.05);
+}
+
+.td-btn .remove-btn {
+    width: 30%;
+    background-color: #ef5350;
+    transition: .2s ease;
+}
+
+.td-btn .remove-btn:hover {
+    transform: scale(1.05);
 }
