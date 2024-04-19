@@ -32,8 +32,8 @@ export default async function Home() {
                             <p>{priceFormater(product.price)} </p>
                             <p>Fabricante: {product.manufacturer}</p>
                             <p>Quantidade: {product.quantity}</p>
-                            <p>Fabricado: {dayjs(product.manufacturingDate).format('DD-MM-YYYY')}</p>
-                            <p>Validade: {dayjs(product.dueDate).format('DD-MM-YYYY')}</p>
+                            {/* <p>Fabricado: {dayjs(product.manufacturingDate).format('DD-MM-YYYY')}</p> */}
+                            {/* <p>Validade: {dayjs(product.dueDate).format('DD-MM-YYYY')}</p> */}
 
                         </div>
                     ))}
