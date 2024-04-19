@@ -1,7 +1,11 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { loadUsers } from '../dashboard/products/page';
 
 
-export default function DashboardComponent({ children }) {
+
+export default async function DashboardComponent({ children }) {
+    const products = await loadUsers();
+
     return (
         <>
             <div className="wrapper">
@@ -10,20 +14,23 @@ export default function DashboardComponent({ children }) {
 
                     <div className="row">
                         <div className="card">
-                            <h2>Diversidade de Itens</h2>
-                            <p>Quantidade total de diferentes tipos de itens em estoque: XX</p>
+                            <h1>{products.length}</h1>
+                            <p>Diversidade de Itens</p>
                         </div>
                         <div className="card">
-                            <h2>Inventário Total</h2>
-                            <p>Quantidade total de todos os itens em estoque: XX</p>
+                            <h1>{products.length}</h1>
+                            <p>Inventário Total</p>
+
                         </div>
                         <div className="card">
-                            <h2>Itens Recentes</h2>
-                            <p>Número de itens recentemente adicionados: XX</p>
+                            <h1>{products.length}</h1>
+                            <p>Itens Recentes</p>
+
                         </div>
                         <div className="card">
-                            <h2>Itens Acabando</h2>
-                            <p>Número de itens com estoque baixo: XX</p>
+                            <h1>{products.length}</h1>
+                            <p>Itens Acabando</p>
+
                         </div>
                     </div>
                 </div>

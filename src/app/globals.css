@@ -87,9 +87,12 @@
 }
 
 .card {
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
     background-color: #37474F;
-    color: #000;
-    width: calc(25% - 20px);
+    color: #ddd;
+    width: 450px;
     margin: 10px;
     padding: 40px;
     border: 1px solid #ccc;
@@ -119,18 +122,21 @@
     margin: 0;
 }
 
-.menu ul li {
-    padding: 10px 10px;
+.menu ul a {
+    padding: 15px 10px;
     display: flex;
     align-items: center;
     align-content: center;
     gap: 10px;
     background-color: #37474F;
+    text-decoration: none;
+    color: #fff;
     cursor: pointer;
     transition: .1s;
+    font-size: 19px;
 }
 
-.menu ul li:hover {
+.menu ul a:hover {
     border-left: 3px solid #1976D2;
     background-color: #37474f9f;
 }
@@ -165,4 +171,60 @@ i {
     display: grid;
 
     grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* FORMULARIO */
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Estilos para os campos e rótulos */
+form .form-input {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Estilos para o botão */
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para o contêiner do formulário */
+.container-form {
+    margin-top: 50px;
+    /* text-align: center; */
+}
+
+/* Estilos para o título do formulário */
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
 }
