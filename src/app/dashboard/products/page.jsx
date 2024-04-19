@@ -13,9 +13,9 @@ export async function loadUsers() {
     return products
 }
 
-// function priceFormater(number) {
-//     return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-// }
+function priceFormater(number) {
+    return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+}
 
 export default async function Home() {
     const products = await loadUsers()
@@ -28,7 +28,7 @@ export default async function Home() {
                     {products.map((product, i) => (
                         <div key={i}>
                             <p>Nome :{product.name}</p>
-                            <p>{product.price} </p>
+                            <p>{priceFormater(product.price)} </p>
                             <p>Fabricante: {product.manufacturer}</p>
                             <p>Quantidade: {product.quantity}</p>
                             <p>Fabricado: {dayjs(product.manufacturingDate).format('DD-MM-YYYY')}</p>
