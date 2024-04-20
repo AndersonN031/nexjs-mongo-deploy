@@ -1,11 +1,37 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { loadUsers } from '../dashboard/products/page';
-
-
+import { loadUsers } from '../dashboard/products/page.tsx';
+import dayjs from 'dayjs';
 
 export default async function DashboardComponent({ children }) {
     const products = await loadUsers();
+    const totalIinventory = products.reduce((total, product) => total + product.quantity, 0)
 
+    const recentProducts = products.filter(product => {
+        // Verifica se product.createdAt está definido
+        if (product.createdAt) {
+            const now = dayjs(); // Obtém a data e hora atual
+            const createdAt = dayjs(product.createdAt); // Converte a data de criação do produto para um objeto Day.js
+
+            const differenceInHours = now.diff(createdAt, 'hour'); // Calcula a diferença em horas entre as duas datas
+
+            // console.log(`Diferença em horas para o produto ${product._id}:`, differenceInHours);
+
+            return differenceInHours <= 24;
+        } else {
+            return false;
+        }
+    });
+
+    const itemsRunningOut = products.filter(product => {
+        if (product.quantity <= 10) {
+            console.log(`${product.name} está acabando`)
+            return true
+        } else {
+            return false;
+        }
+    })
+
+    console.log(itemsRunningOut)
     return (
         <>
             <div className="wrapper">
@@ -18,17 +44,17 @@ export default async function DashboardComponent({ children }) {
                             <p>Diversidade de Itens</p>
                         </div>
                         <div className="card">
-                            <h1>{products.length}</h1>
+                            <h1>{totalIinventory}</h1>
                             <p>Inventário Total</p>
 
                         </div>
                         <div className="card">
-                            <h1>{products.length}</h1>
+                            <h1>{recentProducts.length}</h1>
                             <p>Itens Recentes</p>
 
                         </div>
                         <div className="card">
-                            <h1>{products.length}</h1>
+                            <h1>{itemsRunningOut.length}</h1>
                             <p>Itens Acabando</p>
 
                         </div>
