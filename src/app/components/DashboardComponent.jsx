@@ -1,6 +1,7 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { loadUsers } from '../dashboard/products/page.tsx';
 
+
 export default async function DashboardComponent({ children }) {
     const products = await loadUsers();
     const totalIinventory = products.reduce((total, product) => total + product.quantity, 0)
@@ -46,8 +47,15 @@ export default async function DashboardComponent({ children }) {
                             <h1>Menu</h1>
                         </div>
                         <ul>
-                            <input type="text" placeholder="Buscar" className='input-menu' />
-                            <li><p>NAVEGAÇÃO PRINCIPAL</p></li>
+
+                            <div className="input-container">
+                                <form>
+                                    <input type="text" placeholder="Search..." />
+                                    <button type="submit"><i className="bi bi-search" aria-hidden="true"></i></button>
+                                </form>
+                            </div>
+
+                            <li className='title-navigation'><p>NAVEGAÇÃO PRINCIPAL</p></li>
                             <a href="/dashboard"><li><i className="bi bi-graph-up-arrow"></i> Dashboard </li></a>
 
                             <a href="/dashboard/products"><li><i className="bi bi-clipboard-data-fill"></i> Produtos</li></a>

@@ -117,15 +117,67 @@
     background-color: #455A64;
 }
 
-.input-menu {
+.input-container {
     width: 90%;
-    padding: 15px 0px;
-    margin: 1% 5%;
+    margin: 0 5%;
+    height: 60px;
+    text-align: center;
+}
+
+.input-container form {
+    background-color: #455A64;
+    border-radius: 25px;
+    position: relative;
+
+}
+
+.input-container input {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: #37474F;
+    padding: 8px 40px 8px 20px;
     border: none;
 }
 
-.input-menu::placeholder {
+.input-container input:focus {
+    outline: none;
+}
+
+.input-container button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 100%;
+    border-radius: 0px 5px 5px 0px;
+    cursor: pointer;
+    border: none;
+    background-color: #37474F;
+    font-size: 18px;
+    transition: .2s ease;
+}
+
+
+.input-container button:hover {
     background-color: #333;
+}
+
+.input-container button i {
+    color: #fff;
+}
+
+.title-navigation {
+    padding: 15px;
+    background-color: #292929;
+    color: #494949;
+
+}
+
+.input-menu::placeholder {
+    background-color: #37474F;
     width: 100%;
     padding: 20px;
 }
