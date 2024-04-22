@@ -1,37 +1,18 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { loadUsers } from '../dashboard/products/page.tsx';
-import dayjs from 'dayjs';
 
 export default async function DashboardComponent({ children }) {
     const products = await loadUsers();
     const totalIinventory = products.reduce((total, product) => total + product.quantity, 0)
+    const productsRunningOut = products.filter(product => product.quantity <= 10);
+    const totalInventoryProducts = products.reduce((total, product) => total + product.price, 0)
 
-    const recentProducts = products.filter(product => {
-        // Verifica se product.createdAt está definido
-        if (product.createdAt) {
-            const now = dayjs(); // Obtém a data e hora atual
-            const createdAt = dayjs(product.createdAt); // Converte a data de criação do produto para um objeto Day.js
+    function priceFormater(number) {
+        return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    }
 
-            const differenceInHours = now.diff(createdAt, 'hour'); // Calcula a diferença em horas entre as duas datas
+    // console.log(itemsRunningOut)
 
-            // console.log(`Diferença em horas para o produto ${product._id}:`, differenceInHours);
-
-            return differenceInHours < 24;
-        } else {
-            return false;
-        }
-    });
-
-    const itemsRunningOut = products.filter(product => {
-        if (product.quantity <= 10) {
-            // console.log(`${product.name} está acabando`)
-            return true
-        } else {
-            return false;
-        }
-    })
-
-    console.log(itemsRunningOut)
     return (
         <>
             <div className="wrapper">
@@ -41,7 +22,7 @@ export default async function DashboardComponent({ children }) {
                     <div className="row">
                         <div className="card">
                             <h1>{products.length}</h1>
-                            <p>Diversidade de Itens</p>
+                            <p>Diversidade de produtos</p>
                         </div>
                         <div className="card">
                             <h1>{totalIinventory}</h1>
@@ -49,13 +30,12 @@ export default async function DashboardComponent({ children }) {
 
                         </div>
                         <div className="card">
-                            <h1>{recentProducts.length}</h1>
-                            <p>Itens Recentes</p>
-
+                            <h1>{priceFormater(totalInventoryProducts)}</h1>
+                            <p>Valor total em estoque</p>
                         </div>
                         <div className="card">
-                            <h1>{itemsRunningOut.length}</h1>
-                            <p>Itens Acabando</p>
+                            <h1>{productsRunningOut.length}</h1>
+                            <p>Produtos Acabando</p>
 
                         </div>
                     </div>
@@ -66,6 +46,8 @@ export default async function DashboardComponent({ children }) {
                             <h1>Menu</h1>
                         </div>
                         <ul>
+                            <input type="text" placeholder="Buscar" className='input-menu' />
+                            <li><p>NAVEGAÇÃO PRINCIPAL</p></li>
                             <a href="/dashboard"><li><i className="bi bi-graph-up-arrow"></i> Dashboard </li></a>
 
                             <a href="/dashboard/products"><li><i className="bi bi-clipboard-data-fill"></i> Produtos</li></a>

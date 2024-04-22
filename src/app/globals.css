@@ -109,11 +109,25 @@
     /* padding: 20px; */
 }
 
+
 .title-menu {
     text-align: center;
     padding: 20px;
     color: #fff;
     background-color: #455A64;
+}
+
+.input-menu {
+    width: 90%;
+    padding: 15px 0px;
+    margin: 1% 5%;
+    border: none;
+}
+
+.input-menu::placeholder {
+    background-color: #333;
+    width: 100%;
+    padding: 20px;
 }
 
 .menu ul {
@@ -158,7 +172,6 @@ i {
 
 .footer-menu {
     background-color: #37474F;
-    margin-top: 105%;
 }
 
 .footer-menu p {
@@ -190,9 +203,9 @@ label {
     margin-bottom: 5px;
 }
 
-input[type="text"],
-input[type="number"],
-input[type="date"] {
+.input-form[type="text"],
+.input-form[type="number"],
+.input-form[type="date"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -229,9 +242,48 @@ h1 {
 
 /* PRODUCTS */
 
+.table-container {
+    width: 100%;
+    max-height: 680px;
+    overflow-x: auto;
+}
+
 .product-table {
     width: 100%;
     border-collapse: collapse;
+}
+
+.product-table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #455A64;
+    color: white;
+    z-index: 10;
+}
+
+.product-table tbody {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.product-table thead,
+.product-table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.product-table th,
+.product-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.product-table tbody tr {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
 }
 
 .product-table th,
@@ -306,4 +358,23 @@ h1 {
 
 .td-btn .remove-btn:hover {
     transform: scale(1.05);
+}
+
+.table-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #6ea2ff;
+    border-radius: 10px;
+}
+
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #1976D2;
 }

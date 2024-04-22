@@ -53,6 +53,7 @@ const ProductForm = () => {
                             id="productName"
                             value={productName}
                             onChange={(e) => setProductName(e.target.value)}
+                            className="input-form"
                             required
                         />
                     </div>
@@ -63,6 +64,7 @@ const ProductForm = () => {
                             id="productPrice"
                             value={productPrice}
                             onChange={(e) => setProductPrice(e.target.value)}
+                            className="input-form"
                             required
                         />
                     </div>
@@ -73,6 +75,7 @@ const ProductForm = () => {
                             id="manufacturer"
                             value={manufacturer}
                             onChange={(e) => setManufacturer(e.target.value)}
+                            className="input-form"
                             required
                         />
                     </div>
@@ -83,6 +86,7 @@ const ProductForm = () => {
                             id="productQuantity"
                             value={productQuantity}
                             onChange={(e) => setProductQuantity(e.target.value)}
+                            className="input-form"
                             required
                         />
                     </div>
@@ -93,6 +97,7 @@ const ProductForm = () => {
                             id="manufacturingDate"
                             value={manufacturingDate}
                             onChange={(e) => setManufacturingDate(e.target.value)}
+                            className="input-form"
                             required
                         />
                     </div>
@@ -103,6 +108,7 @@ const ProductForm = () => {
                             id="dueDate"
                             value={dueDate}
                             onChange={(e) => setDueDate(e.target.value)}
+                            className="input-form"
                             required
                         />
                     </div>
