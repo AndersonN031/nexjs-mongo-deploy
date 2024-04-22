@@ -6,25 +6,25 @@ export default async function DashboardComponent({ children }) {
     const products = await loadUsers();
     const totalIinventory = products.reduce((total, product) => total + product.quantity, 0)
 
-    const recentProducts = products.filter(product => {
-        // Verifica se product.createdAt está definido
-        if (product.createdAt) {
-            const now = dayjs(); // Obtém a data e hora atual
-            const createdAt = dayjs(product.createdAt); // Converte a data de criação do produto para um objeto Day.js
+    // const recentProducts = products.filter(product => {
+    //     // Verifica se product.createdAt está definido
+    //     if (product.createdAt) {
+    //         const now = dayjs(); // Obtém a data e hora atual
+    //         const createdAt = dayjs(product.createdAt); // Converte a data de criação do produto para um objeto Day.js
 
-            const differenceInHours = now.diff(createdAt, 'hour'); // Calcula a diferença em horas entre as duas datas
+    //         const differenceInHours = now.diff(createdAt, 'hour'); // Calcula a diferença em horas entre as duas datas
 
-            // console.log(`Diferença em horas para o produto ${product._id}:`, differenceInHours);
+    //         // console.log(`Diferença em horas para o produto ${product._id}:`, differenceInHours);
 
-            return differenceInHours < 24;
-        } else {
-            return false;
-        }
-    });
+    //         return differenceInHours < 24;
+    //     } else {
+    //         return false;
+    //     }
+    // });
 
     const itemsRunningOut = products.filter(product => {
         if (product.quantity <= 10) {
-            console.log(`${product.name} está acabando`)
+            // console.log(`${product.name} está acabando`)
             return true
         } else {
             return false;
@@ -49,7 +49,7 @@ export default async function DashboardComponent({ children }) {
 
                         </div>
                         <div className="card">
-                            <h1>{recentProducts.length}</h1>
+                            <h1>nada por enquanto</h1>
                             <p>Itens Recentes</p>
 
                         </div>
