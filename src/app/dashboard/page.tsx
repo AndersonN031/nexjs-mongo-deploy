@@ -1,8 +1,12 @@
 
 import HeaderComponent from "../components/HeaderComponent"
 import DashboardComponent from "../components/DashboardComponent"
+import React from "react"
 
-export default async function DashBoard() {
+export const dynamic = 'force-dynamic';
+
+export default function DashBoard() {
+
     return (
         <>
             <HeaderComponent />
