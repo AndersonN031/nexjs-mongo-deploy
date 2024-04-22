@@ -2,7 +2,7 @@
 import HeaderComponent from "../components/HeaderComponent"
 import DashboardComponent from "../components/DashboardComponent"
 
-export default function DashBoard() {
+export default async function DashBoard() {
     return (
         <>
             <HeaderComponent />
