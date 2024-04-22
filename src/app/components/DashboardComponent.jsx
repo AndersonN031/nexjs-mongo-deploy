@@ -16,7 +16,7 @@ export default async function DashboardComponent({ children }) {
 
             // console.log(`Diferença em horas para o produto ${product._id}:`, differenceInHours);
 
-            return differenceInHours <= 24;
+            return differenceInHours < 24;
         } else {
             return false;
         }
