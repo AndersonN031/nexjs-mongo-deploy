@@ -4,6 +4,7 @@ import HeaderComponent from "@/app/components/HeaderComponent";
 import connectDB from "@/libs/mongodb"
 import Product from "@/models/product"
 import dayjs from "dayjs"
+import Link from "next/link"
 
 export const dynamic = 'force-dynamic';
 
@@ -18,7 +19,10 @@ function priceFormater(number: number): string {
 }
 
 export default async function Home() {
-    const products = await loadUsers()
+    const products = await Product.find()
+
+
+
     return (
         <>
             <HeaderComponent />
@@ -46,9 +50,13 @@ export default async function Home() {
                                     <td>{dayjs(product.manufacturingDate).format('DD-MM-YYYY')}</td>
                                     <td>{dayjs(product.dueDate).format('DD-MM-YYYY')}</td>
                                     <td className="td-btn">
-                                        <button className="show-btn"><i className="bi bi-eye"></i></button>
-                                        <button className="update-btn"><i className="bi bi-pencil-square"></i></button>
-                                        <button className="remove-btn"><i className="bi bi-trash"></i></button>
+
+                                        {/* app/dashboard/products/page.tsx */}
+                                        <Link href={`/dashboard/products/${product._id}`} legacyBehavior>
+                                            <button className="show-btn"><i className="bi bi-eye"></i></button>
+                                        </Link>
+
+
 
                                     </td>
 

@@ -392,25 +392,6 @@ h1 {
     transform: scale(1.05);
 }
 
-.td-btn .update-btn {
-    background-color: #6bbf59;
-    transition: .2s ease;
-    width: 30%;
-}
-
-.td-btn .update-btn:hover {
-    transform: scale(1.05);
-}
-
-.td-btn .remove-btn {
-    width: 30%;
-    background-color: #ef5350;
-    transition: .2s ease;
-}
-
-.td-btn .remove-btn:hover {
-    transform: scale(1.05);
-}
 
 .table-container::-webkit-scrollbar {
     width: 8px;
@@ -429,4 +410,71 @@ h1 {
 
 .table-container::-webkit-scrollbar-thumb:hover {
     background: #1976D2;
+}
+
+/* SECTION PRODUCT/_ID */
+
+.container-product-id {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0px 4%;
+}
+
+.title-product-id {
+    font-size: 30px;
+}
+
+.product-info {
+    display: flex;
+    margin: 2% 0px;
+    gap: 10px;
+}
+
+.product-price-info,
+.product-manufacturer-info,
+.product-quantity-info {
+    padding: 10px;
+    background-color: #393939;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.container-product-id .product-manufacturer {
+    font-size: 18px;
+}
+
+.container-btn-product {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    gap: 12px;
+    margin: 1% 0;
+}
+
+.container-product-id button {
+    display: block;
+    width: 80px;
+    padding: 5px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.container-product-id .update-btn {
+    background-color: #6bbf59;
+    transition: .2s ease;
+}
+
+.container-product-id .update-btn:hover {
+    transform: scale(1.05);
+}
+
+.container-product-id .remove-btn {
+    background-color: #ef5350;
+    transition: .2s ease;
+}
+
+.container-product-id .remove-btn:hover {
+    transform: scale(1.05);
 }

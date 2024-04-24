@@ -1,3 +1,4 @@
+// app/api/products/[productId]/route.ts
 import Product from "@/models/product";
 import { NextResponse } from "next/server";
 
@@ -28,4 +29,5 @@ export async function DELETE(request: Request, context: any) {
     } catch (error) {
         console.error({ error: "Não foi possivel deletar o produto." })
     }
-} 
+}
+

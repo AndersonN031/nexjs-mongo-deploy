@@ -1,3 +1,4 @@
+// app/api/products/route.ts
 import { NextResponse } from "next/server";
 import connectDB from "../../../libs/mongodb";
 import Product from "@/models/product";
