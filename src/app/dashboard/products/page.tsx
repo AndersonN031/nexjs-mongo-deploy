@@ -1,26 +1,21 @@
-
+import axios from "axios";
 import DashboardComponent from "@/app/components/DashboardComponent";
 import HeaderComponent from "@/app/components/HeaderComponent";
-import connectDB from "@/libs/mongodb"
-import Product from "@/models/product"
-import dayjs from "dayjs"
-import Link from "next/link"
-
-export const dynamic = 'force-dynamic';
-
-export async function loadUsers() {
-    await connectDB()
-    const products = await Product.find()
-    return products
-}
+import dayjs from "dayjs";
+import Link from "next/link";
 
 function priceFormater(number: number): string {
-    return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
 export default async function Home() {
-    const products = await Product.find()
-
+    let products = [];
+    try {
+        const response = await axios.get('https://nexjs-mongo-deploy.vercel.app/api/products');
+        products = response.data; // Certifique-se de que a API retorna a lista de produtos diretamente
+    } catch (error) {
+        console.error("Erro ao buscar produtos:", error);
+    }
 
 
     return (
@@ -41,7 +36,7 @@ export default async function Home() {
                             </tr>
                         </thead>
                         <tbody>
-                            {products.map((product, i) => (
+                            {products.map((product: any, i: any) => (
                                 <tr key={i}>
                                     <td>{product.name}</td>
                                     <td>{typeof product.price === 'number' ? priceFormater(product.price) : 'Preço indisponível'}</td>
@@ -50,24 +45,16 @@ export default async function Home() {
                                     <td>{dayjs(product.manufacturingDate).format('DD-MM-YYYY')}</td>
                                     <td>{dayjs(product.dueDate).format('DD-MM-YYYY')}</td>
                                     <td className="td-btn">
-
-                                        {/* app/dashboard/products/page.tsx */}
                                         <Link href={`/dashboard/products/${product._id}`} legacyBehavior>
                                             <button className="show-btn"><i className="bi bi-eye"></i></button>
                                         </Link>
-
-
-
                                     </td>
-
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                 </div>
-
             </DashboardComponent>
         </>
     )
 }
-

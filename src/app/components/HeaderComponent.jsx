@@ -21,12 +21,6 @@ export default function HeaderComponent() {
                             <a>Dashboard</a>
                         </Link>
                     </li>
-
-                    <li>
-                        <Link href="/dashboard/products" legacyBehavior>
-                            <a>Produtos</a>
-                        </Link>
-                    </li>
                 </ul>
             </nav>
         </header>
