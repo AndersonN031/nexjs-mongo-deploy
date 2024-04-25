@@ -4,6 +4,8 @@ import HeaderComponent from "@/app/components/HeaderComponent";
 import dayjs from "dayjs";
 import Link from "next/link";
 
+export const dynamic = 'force-dynamic';
+
 function priceFormater(number: number): string {
     return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
