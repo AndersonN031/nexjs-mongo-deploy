@@ -4,9 +4,9 @@ import axios from 'axios';
 // chamando a api utilizando o get
 async function fetchProducts() {
     try {
-        // const response = await axios.get('https://nexjs-mongo-deploy.vercel.app/api/products');
-        
-        const response = await axios.get(`http://localhost:3000/api/products`)
+        const response = await axios.get('https://nexjs-mongo-deploy.vercel.app/api/products');
+
+        // const response = await axios.get(`http://localhost:3000/api/products`)
         return response.data;
     } catch (error) {
         console.error("Erro ao buscar produtos:", error);

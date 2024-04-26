@@ -20,9 +20,9 @@ export default async function ShowProductInTable() {
 
     // tratando a chamada get da api
     try {
-        // const response = await axios.get('https://nexjs-mongo-deploy.vercel.app/api/products');
+        const response = await axios.get('https://nexjs-mongo-deploy.vercel.app/api/products');
 
-        const response = await axios.get(`http://localhost:3000/api/products`)
+        // const response = await axios.get(`http://localhost:3000/api/products`)
         products = response.data;
     } catch (error) {
         console.error("Erro ao buscar produtos:", error);
