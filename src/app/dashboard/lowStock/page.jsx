@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import Link from "next/link";
 import { priceFormater } from "../products/page";
 
+export const dynamic = 'force-dynamic';
 
 export default async function LowStockProduct() {
     const products = await fetchProducts();
