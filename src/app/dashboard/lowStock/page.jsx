@@ -1,32 +1,12 @@
-import axios from "axios";
-import DashboardComponent from "@/app/components/DashboardComponent";
+import DashboardComponent, { fetchProducts } from "@/app/components/DashboardComponent";
 import dayjs from "dayjs";
 import Link from "next/link";
-
-// deixando a rota dinâmica para ser atualizada assim que alguma chamada HTTP for feita
-export const dynamic = 'force-dynamic';
+import { priceFormater } from "../products/page";
 
 
-export function priceFormater(number: number): string {
-    return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-}
-
-// criando uma table para exibir todos os produtos da API
-export default async function ShowProductInTable() {
-
-    // se ocorrer um erro o products ficará vázio...
-    let products = [];
-
-    // tratando a chamada get da api
-    try {
-        const response = await axios.get('https://nexjs-mongo-deploy.vercel.app/api/products');
-
-        // const response = await axios.get(`http://localhost:3000/api/products`)
-        products = response.data;
-    } catch (error) {
-        console.error("Erro ao buscar produtos:", error);
-    }
-
+export default async function LowStockProduct() {
+    const products = await fetchProducts();
+    const lowStockProducts = products.filter(product => product.quantity <= 10);
 
     return (
         <>
@@ -45,7 +25,7 @@ export default async function ShowProductInTable() {
                             </tr>
                         </thead>
                         <tbody>
-                            {products.map((product: any, i: any) => (
+                            {lowStockProducts.map((product, i) => (
                                 <tr key={i}>
                                     <td>{product.name}</td>
                                     <td>{typeof product.price === 'number' ? priceFormater(product.price) : 'Preço indisponível'}</td>

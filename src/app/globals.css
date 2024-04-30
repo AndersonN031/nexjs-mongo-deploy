@@ -81,46 +81,98 @@
 
 /* DASHBOARD CONTAINER */
 
+.grid-dashboard {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    background-color: whitesmoke;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
 .container-dashboard {
     display: flex;
-    flex-direction: row;
-
+    flex-direction: column;
+    justify-content: center;
+    padding: 0px 5%;
 }
 
 .row {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
+    gap: 30px;
+}
+
+.dashboard-user {
+    padding: 20px 3.5%;
+    font-size: 30px;
 }
 
 .card {
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    background-color: #292929;
-    color: #ddd;
-    width: 450px;
+    background-color: #fff;
+    border: none;
+    color: #000;
+    width: 300px;
+    padding: 30px 2%;
     margin: 10px;
-    padding: 40px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
+    gap: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
+}
+
+.total-in-stock {
+    border: none;
+    border-radius: 0;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    background-color: #001f3fe7;
+}
+
+.title-card {
+    font-size: 18px;
+}
+
+.number-card {
+    font-size: 40px;
 }
 
 /* MENU CONTAINER */
 
 .menu {
     width: 300px;
-    background-color: #292929;
-    height: 75vh;
+    background-color: #001f3fe7;
+    height: 100vh;
     /* padding: 20px; */
 }
 
 
-.title-menu {
+.img-menu {
     text-align: center;
     padding: 20px;
     color: #fff;
-    background-color: #292929;
+}
+
+.img-menu .image-user {
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+}
+
+.img-menu p {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 30px;
+}
+
+.img-menu .email-p {
+    font-size: 15px;
+    font-weight: 100;
 }
 
 .input-container {
@@ -161,7 +213,7 @@
     border-radius: 0px 5px 5px 0px;
     cursor: pointer;
     border: none;
-    background-color: #333;
+    background-color: #001f3fe7;
     font-size: 18px;
     transition: .2s ease;
 }
@@ -175,12 +227,6 @@
     color: #fff;
 }
 
-.title-navigation {
-    padding: 15px;
-    background-color: #292929;
-    color: #494949;
-
-}
 
 .input-menu::placeholder {
     background-color: #37474F;
@@ -195,12 +241,10 @@
 }
 
 .menu ul a {
-    padding: 15px 10px;
+    padding: 20px 10%;
     display: flex;
     align-items: center;
     align-content: center;
-    gap: 10px;
-    background-color: #333;
     text-decoration: none;
     color: #fff;
     cursor: pointer;
@@ -213,25 +257,15 @@
     background-color: #292929;
 }
 
-.menu ul li a {
-
-    text-decoration: none;
-    color: #fff;
-    font-size: 19px;
+.menu ul li {
+    display: flex;
+    gap: 30px;
 }
 
-.menu ul li a:hover {
-    color: #fff;
-}
 
 i {
     color: #fff;
-}
-
-.grid-dashboard {
-    display: grid;
-
-    grid-template-columns: 1fr 6fr;
+    font-size: 23px;
 }
 
 /* FORMULARIO */
@@ -304,6 +338,7 @@ h1 {
     width: 100%;
     max-height: 680px;
     overflow-x: auto;
+    padding: 0px 8.3%;
 }
 
 .product-table {

@@ -1,5 +1,4 @@
 
-import HeaderComponent from "../components/HeaderComponent"
 import DashboardComponent from "../components/DashboardComponent"
 import React from "react"
 
@@ -9,7 +8,6 @@ export default function DashBoard() {
 
     return (
         <>
-            <HeaderComponent />
             <DashboardComponent>
                 <div>
                     <h1>Produtos</h1>

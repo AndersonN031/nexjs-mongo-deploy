@@ -1,9 +1,7 @@
 "use client"
 import DashboardComponent from "@/app/components/DashboardComponent";
-import HeaderComponent from "@/app/components/HeaderComponent";
 import axios from "axios";
 import dayjs from "dayjs";
-import Link from "next/link"
 
 function priceFormater(number: number): string {
   return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
@@ -54,7 +52,6 @@ export default async function GetId({ params }: any) {
 
     return (
       <>
-        <HeaderComponent />
         <DashboardComponent>
           <div className="container-product-id">
             <p className="title-product-id">Produto: {productData.product.name}</p>

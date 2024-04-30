@@ -1,8 +1,10 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import axios from 'axios';
+import userImg from "@/app/images/user-example.png"
+import Image from "next/image"
 
 // chamando a api utilizando o get
-async function fetchProducts() {
+export async function fetchProducts() {
     try {
         const response = await axios.get('https://nexjs-mongo-deploy.vercel.app/api/products');
 
@@ -29,51 +31,65 @@ export default async function DashboardComponent({ children }) {
 
     return (
         <>
-            <div className="wrapper">
-                <div className="container-dashboard">
-                    <div className="row">
-                        <div className="card">
-                            <h1>{products.length}</h1>
-                            <p>Diversidade de produtos</p>
-                        </div>
-                        <div className="card">
-                            <h1>{totalInventory}</h1>
-                            <p>Inventário Total</p>
-                        </div>
-                        <div className="card">
-                            <h1>{priceFormater(totalInventoryValue)}</h1>
-                            <p>Valor total em estoque</p>
-                        </div>
-                        <div className="card">
-                            <h1>{productsRunningOut.length}</h1>
-                            <p>Produtos Acabando</p>
-                        </div>
+            <div className="grid-dashboard">
+                <div className="menu">
+                    <div className="img-menu">
+                        <Image src={userImg}
+                            width={160}
+                            height={160}
+                            alt="user"
+                            className="image-user"
+                        />
+
+                        <p>Anderson Nunes</p>
+                        <p className="email-p">exampleuser@gmail.com</p>
                     </div>
+                    <ul>
+                        <div className="input-container">
+                            <form>
+                                <input type="text" placeholder="Search..." />
+                                <button type="submit"><i className="bi bi-search" aria-hidden="true"></i></button>
+                            </form>
+                        </div>
+                        <li className='title-navigation'></li>
+                        <a href="/dashboard"><li><i className="bi bi-graph-up-arrow"></i> Dashboard </li></a>
+                        <a href="/dashboard/products"><li><i className="bi bi-clipboard-data-fill"></i> Produtos</li></a>
+                        <a href="/dashboard/lowStock"><li><i className="bi bi-hourglass-bottom"></i> Produtos acabando</li></a>
+                        <a href="/dashboard/addProduct"><li><i className="bi bi-pie-chart"></i> Novo produto</li></a>
+                    </ul>
                 </div>
-                <div className="grid-dashboard">
-                    <div className="menu">
-                        <div className="title-menu">
-                            <h1>Menu</h1>
+                <div className="show-status">
+                    {/* <div className="wrapper"> */}
+                    <div className="container-dashboard">
+                        <div className="div-dashboard-user">
+                            <p className="dashboard-user">Dashboard User</p>
                         </div>
-                        <ul>
-                            <div className="input-container">
-                                <form>
-                                    <input type="text" placeholder="Search..." />
-                                    <button type="submit"><i className="bi bi-search" aria-hidden="true"></i></button>
-                                </form>
+                        <div className="row">
+                            <div className="card total-in-stock">
+                                <p className="title-card">Valor total em estoque</p>
+                                <p className="number-card">{priceFormater(totalInventoryValue)}</p>
                             </div>
-                            <li className='title-navigation'><p>NAVEGAÇÃO PRINCIPAL</p></li>
-                            <a href="/dashboard"><li><i className="bi bi-graph-up-arrow"></i> Dashboard </li></a>
-                            <a href="/dashboard/products"><li><i className="bi bi-clipboard-data-fill"></i> Produtos</li></a>
-                            <a href="#"><li><i className="bi bi-hourglass-bottom"></i> Itens acabando</li></a>
-                            <a href="/dashboard/addProduct"><li><i className="bi bi-pie-chart"></i> Novo produto</li></a>
-                        </ul>
+                            <div className="card">
+                                <p className="title-card">Diversidade de produtos</p>
+                                <p className="number-card">{products.length}</p>
+                            </div>
+                            <div className="card">
+                                <p className="title-card">Inventário Total</p>
+                                <p className="number-card">{totalInventory}</p>
+                            </div>
+                            <div className="card">
+                                <p className="title-card">Produtos Acabando</p>
+                                <p className="number-card">{productsRunningOut.length}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div className="show-status">
-                        {children}
-                    </div>
+
+                    {/* </div> */}
+                    {children}
+
                 </div>
             </div>
+
         </>
     );
 }
