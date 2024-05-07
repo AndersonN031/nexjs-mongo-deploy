@@ -17,8 +17,8 @@ export default function UpdateProduct({ params }: any) {
     // Função para carregar os dados do produto existente
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get(`https://nexjs-mongo-deploy.vercel.app/api/products/${_id}`);
-            // const response = await axios.get(`http://localhost:3000/api/products/${_id}`);
+            // const response = await axios.get(`https://nexjs-mongo-deploy.vercel.app/api/products/${_id}`);
+            const response = await axios.get(`http://localhost:3000/api/products/${_id}`);
             setProduct(response.data.product);
         };
         fetchData();
