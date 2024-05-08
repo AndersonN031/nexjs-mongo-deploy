@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import axios from 'axios';
 import HeaderComponent from '@/app/components/HeaderComponent';
+import Link from "next/link"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 const ProductForm = () => {
     const [productName, setProductName] = useState('');
@@ -12,6 +15,18 @@ const ProductForm = () => {
     const [manufacturingDate, setManufacturingDate] = useState('');
     const [dueDate, setDueDate] = useState('');
 
+    const notifySuccess = () => toast.success("Produto adicionado com sucesso!",
+        {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'colored'
+        }
+    )
 
     const handleSubmit = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
@@ -29,18 +44,18 @@ const ProductForm = () => {
 
             console.log('Produto adicionado:', response.data);
 
-
             setProductName('');
             setProductPrice('');
             setManufacturer('');
             setProductQuantity('');
             setManufacturingDate('');
             setDueDate('');
+            notifySuccess()
+            
         } catch (error) {
             console.error('Erro ao adicionar produto:', error);
         }
     };
-
     return (
         <>
             <HeaderComponent />
@@ -112,9 +127,15 @@ const ProductForm = () => {
                             required
                         />
                     </div>
-                    <button className="btn-submit" type="submit">Adicionar Produto</button>
+                    <div className="group-btn-form">
+                        <button className="btn-submit" type="submit">Adicionar Produto</button>
+                        <Link href="/dashboard/products" className="btn-submit-cancel">
+                            Cancelar
+                        </Link>
+                    </div>
                 </div>
             </form>
+            <ToastContainer />
         </>
 
     );

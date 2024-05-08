@@ -1,7 +1,7 @@
-import axios from "axios";
-import DashboardComponent from "@/app/components/DashboardComponent";
+import DashboardComponent, { fetchProducts } from "@/app/components/DashboardComponent";
 import dayjs from "dayjs";
 import Link from "next/link";
+
 
 // deixando a rota dinâmica para ser atualizada assim que alguma chamada HTTP for feita
 export const dynamic = 'force-dynamic';
@@ -13,60 +13,37 @@ export function priceFormater(number: number): string {
 
 // criando uma table para exibir todos os produtos da API
 export default async function ShowProductInTable() {
-
-    // se ocorrer um erro o products ficará vázio...
-    let products = [];
-
-    // tratando a chamada get da api
-    try {
-        const response = await axios.get('https://nexjs-mongo-deploy.vercel.app/api/products');
-
-        // const response = await axios.get(`http://localhost:3000/api/products`)
-        products = response.data;
-    } catch (error) {
-        console.error("Erro ao buscar produtos:", error);
-    }
-
+    let products = await fetchProducts()
 
     return (
         <>
             <DashboardComponent>
-                <div className="table-container">
-                    <table className="product-table">
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Preço Unid.</th>
-                                <th>Fabricante</th>
-                                <th>Quantidade</th>
-                                <th>Fabricado</th>
-                                <th>Validade</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {products.map((product: any, i: any) => (
-                                <tr key={i}>
-                                    <td>{product.name}</td>
-                                    <td>{typeof product.price === 'number' ? priceFormater(product.price) : 'Preço indisponível'}</td>
-                                    <td>{product.manufacturer}</td>
-                                    <td>{product.quantity}</td>
-                                    <td>{dayjs(product.manufacturingDate).format('DD-MM-YYYY')}</td>
-                                    <td>{dayjs(product.dueDate).format('DD-MM-YYYY')}</td>
-                                    <td className="td-btn">
-                                        <Link href={`/dashboard/products/${product._id}`} legacyBehavior>
-                                            <button className="show-btn"><i className="bi bi-eye"></i></button>
-                                        </Link>
-
-                                        <Link href={`/dashboard/updateProduct/${product._id}`} legacyBehavior>
-                                            <button className="update-btn"><i className="bi bi-pencil-square"></i></button>
-                                        </Link>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                <div className="product-container">
+                    {products.map((product: any, i: any) => (
+                        <div className="product-card" key={i}>
+                            <div className="product-info">
+                                <h3 className="product-name">{product.name}</h3>
+                                <p className="product-price">{typeof product.price === 'number' ? priceFormater(product.price) : 'Preço indisponível'}</p>
+                                <div className="product-details">
+                                    <p><span>Fabricante:</span> {product.manufacturer}</p>
+                                    <p><span>Quantidade:</span> {product.quantity}</p>
+                                    <p><span>Fabricado:</span> {dayjs(product.manufacturingDate).format('DD-MM-YYYY')}</p>
+                                    <p><span>Validade:</span> {dayjs(product.dueDate).format('DD-MM-YYYY')}</p>
+                                </div>
+                            </div>
+                            <div className="product-actions">
+                                <Link href={`/dashboard/products/${product._id}`} legacyBehavior>
+                                    <button className="show-btn"><i className="bi bi-eye"></i></button>
+                                </Link>
+                                <Link href={`/dashboard/updateProduct/${product._id}`} legacyBehavior>
+                                    <button className="update-btn"><i className="bi bi-pencil-square"></i></button>
+                                </Link>
+                            </div>
+                        </div>
+                    ))}
                 </div>
+
+
             </DashboardComponent>
         </>
     )

@@ -2,7 +2,8 @@
 import DashboardComponent from "@/app/components/DashboardComponent";
 import axios from "axios";
 import dayjs from "dayjs";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 function priceFormater(number: number): string {
   return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 }
@@ -14,14 +15,28 @@ export default async function GetId({ params }: any) {
 
   // criando um metodo para deletar o produto passando o _id do mesmo.
   async function removeProduct(productId: any) {
-    try {
-      const response = await axios.delete(`https://nexjs-mongo-deploy.vercel.app/api/products/${productId}`)
 
-      // const response = await axios.delete(`http://localhost:3000/api/products/${productId}`)
+    const notifyDelete = () => toast.error("Produto excluído com sucesso!", {
+      position: "bottom-right",
+      autoClose: 1600,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored'
+    })
+
+    try {
+      // const response = await axios.delete(`https://nexjs-mongo-deploy.vercel.app/api/products/${productId}`)
+
+      const response = await axios.delete(`http://localhost:3000/api/products/${productId}`)
       // verificando se ocorreu tudo bem então retornando para a rota /dashboard/products
       if (response.status === 200) {
-        alert("Product removed successfully")
-        window.location.href = "/dashboard/products"
+        notifyDelete();
+        setTimeout(() => {
+          window.location.href = "/dashboard/products";
+        }, 2000)
       }
     } catch (error) {
       console.error("Erro ao buscar produtos:", error);
@@ -32,9 +47,9 @@ export default async function GetId({ params }: any) {
 
   // tratando o metodo get da api para retornar a rota dinâmica atráves do _id
   try {
-    const response = await axios.get(`https://nexjs-mongo-deploy.vercel.app/api/products/${_id}`)
+    // const response = await axios.get(`https://nexjs-mongo-deploy.vercel.app/api/products/${_id}`)
 
-    // const response = await axios.get(`http://localhost:3000/api/products/${_id}`)
+    const response = await axios.get(`http://localhost:3000/api/products/${_id}`)
     const productData = response.data;
     console.log("Valor retornado: ", productData.product.name);
 
@@ -79,6 +94,7 @@ export default async function GetId({ params }: any) {
 
             </div>
           </div>
+          <ToastContainer />
         </DashboardComponent>
 
       </>

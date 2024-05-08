@@ -35,7 +35,7 @@
     "src/app/page.jsx",
     "src/app/api/products/[productId]/page.jsx",
     "src/app/dashboard/products/[_id]/page.tsx"
-, "src/app/dashboard/lowStock/page.jsx"  ],
+, "src/app/dashboard/lowStock/page.jsx", "src/app/dashboard/products/page.tsx"  ],
   "exclude": [
     "node_modules"
   ]

@@ -2,6 +2,8 @@
 import HeaderComponent from "@/app/components/HeaderComponent";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function UpdateProduct({ params }: any) {
     const { _id } = params;
@@ -17,12 +19,23 @@ export default function UpdateProduct({ params }: any) {
     // Função para carregar os dados do produto existente
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get(`https://nexjs-mongo-deploy.vercel.app/api/products/${_id}`);
-            // const response = await axios.get(`http://localhost:3000/api/products/${_id}`);
+            // const response = await axios.get(`https://nexjs-mongo-deploy.vercel.app/api/products/${_id}`);
+            const response = await axios.get(`http://localhost:3000/api/products/${_id}`);
             setProduct(response.data.product);
         };
         fetchData();
     }, [_id]);
+
+    const notifyUpdated = () => toast.info("Produto atualizado com sucesso!", {
+        position: "bottom-right",
+        autoClose: 1600,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored'
+    })
 
     // Função para manipular as mudanças nos inputs
     const handleChange = (e: any) => {
@@ -36,13 +49,16 @@ export default function UpdateProduct({ params }: any) {
     // Função para atualizar o produto
     const updateProduct = async () => {
         try {
-            const response = await axios.put(`https://nexjs-mongo-deploy.vercel.app/api/products/${_id}`, product);
-            // const response = await axios.put(`http://localhost:3000/api/products/${_id}`, product);
-            alert('Produto atualizado com sucesso!');
-            window.location.href = `/dashboard/products/${_id}`
+            // const response = await axios.put(`https://nexjs-mongo-deploy.vercel.app/api/products/${_id}`, product);
+            const response = await axios.put(`http://localhost:3000/api/products/${_id}`, product);
+
+            notifyUpdated()
+            setTimeout(() => {
+                window.location.href = `/dashboard/products/${_id}`
+            }, 2000)
             console.log(response.data);
         } catch (error) {
-            console.error('Erro ao atualizar o produto', error);
+            // console.error('Erro ao atualizar o produto', error);
             alert('Falha ao atualizar o produto.');
         }
     };
@@ -121,6 +137,7 @@ export default function UpdateProduct({ params }: any) {
                     </div>
                 </form>
             </div>
+            <ToastContainer />
         </>
     );
 }
