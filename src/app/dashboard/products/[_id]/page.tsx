@@ -28,9 +28,9 @@ export default async function GetId({ params }: any) {
     })
 
     try {
-      // const response = await axios.delete(`https://nexjs-mongo-deploy.vercel.app/api/products/${productId}`)
+      const response = await axios.delete(`https://nexjs-mongo-deploy.vercel.app/api/products/${productId}`)
 
-      const response = await axios.delete(`http://localhost:3000/api/products/${productId}`)
+      // const response = await axios.delete(`http://localhost:3000/api/products/${productId}`)
       // verificando se ocorreu tudo bem então retornando para a rota /dashboard/products
       if (response.status === 200) {
         notifyDelete();
@@ -47,9 +47,9 @@ export default async function GetId({ params }: any) {
 
   // tratando o metodo get da api para retornar a rota dinâmica atráves do _id
   try {
-    // const response = await axios.get(`https://nexjs-mongo-deploy.vercel.app/api/products/${_id}`)
+    const response = await axios.get(`https://nexjs-mongo-deploy.vercel.app/api/products/${_id}`)
 
-    const response = await axios.get(`http://localhost:3000/api/products/${_id}`)
+    // const response = await axios.get(`http://localhost:3000/api/products/${_id}`)
     const productData = response.data;
     console.log("Valor retornado: ", productData.product.name);
 
