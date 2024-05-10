@@ -34,8 +34,11 @@
     ".next/types/**/*.ts",
     "src/app/page.jsx",
     "src/app/api/products/[productId]/page.jsx",
-    "src/app/dashboard/products/[_id]/page.tsx"
-, "src/app/dashboard/lowStock/page.jsx", "src/app/dashboard/products/page.tsx"  ],
+    "src/app/dashboard/products/[_id]/page.tsx",
+    "src/app/dashboard/lowStock/page.jsx",
+    "src/app/dashboard/products/page.tsx",
+    "src/app/(auth)/login/page.jsx"
+  ],
   "exclude": [
     "node_modules"
   ]

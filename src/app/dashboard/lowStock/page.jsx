@@ -12,41 +12,30 @@ export default async function LowStockProduct() {
     return (
         <>
             <DashboardComponent>
-                <div className="table-container">
-                    <table className="product-table">
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Preço Unid.</th>
-                                <th>Fabricante</th>
-                                <th>Quantidade</th>
-                                <th>Fabricado</th>
-                                <th>Validade</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {lowStockProducts.map((product, i) => (
-                                <tr key={i}>
-                                    <td>{product.name}</td>
-                                    <td>{typeof product.price === 'number' ? priceFormater(product.price) : 'Preço indisponível'}</td>
-                                    <td>{product.manufacturer}</td>
-                                    <td>{product.quantity}</td>
-                                    <td>{dayjs(product.manufacturingDate).format('DD-MM-YYYY')}</td>
-                                    <td>{dayjs(product.dueDate).format('DD-MM-YYYY')}</td>
-                                    <td className="td-btn">
-                                        <Link href={`/dashboard/products/${product._id}`} legacyBehavior>
-                                            <button className="show-btn"><i className="bi bi-eye"></i></button>
-                                        </Link>
 
-                                        <Link href={`/dashboard/updateProduct/${product._id}`} legacyBehavior>
-                                            <button className="update-btn"><i className="bi bi-pencil-square"></i></button>
-                                        </Link>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                <div className="product-container">
+                    {lowStockProducts.map((product, i) => (
+                        <div className="product-card" key={i}>
+                            <div className="product-info">
+                                <h3 className="product-name">{product.name}</h3>
+                                <p className="product-price">{typeof product.price === 'number' ? priceFormater(product.price) : 'Preço indisponível'}</p>
+                                <div className="product-details">
+                                    <p><span>Fabricante:</span> {product.manufacturer}</p>
+                                    <p><span>Quantidade:</span> {product.quantity}</p>
+                                    <p><span>Fab:</span> {dayjs(product.manufacturingDate).format('DD/MM/YYYY')}</p>
+                                    <p><span>Val:</span> {dayjs(product.dueDate).format('DD-MM-YYYY')}</p>
+                                </div>
+                            </div>
+                            <div className="product-actions">
+                                <Link href={`/dashboard/products/${product._id}`} legacyBehavior>
+                                    <button className="show-btn"><i className="bi bi-eye"></i></button>
+                                </Link>
+                                <Link href={`/dashboard/updateProduct/${product._id}`} legacyBehavior>
+                                    <button className="update-btn"><i className="bi bi-pencil-square"></i></button>
+                                </Link>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </DashboardComponent>
         </>

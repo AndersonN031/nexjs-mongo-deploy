@@ -6,9 +6,9 @@ import Image from "next/image"
 // chamando a api utilizando o get
 export async function fetchProducts() {
     try {
-        const response = await axios.get('https://nexjs-mongo-deploy.vercel.app/api/products');
+        // const response = await axios.get('https://nexjs-mongo-deploy.vercel.app/api/products');
 
-        // const response = await axios.get(`http://localhost:3000/api/products`)
+        const response = await axios.get(`http://localhost:3000/api/products`)
         return response.data;
     } catch (error) {
         console.error("Erro ao buscar produtos:", error);
@@ -85,8 +85,8 @@ export default async function DashboardComponent({ children }) {
                     </div>
 
                     {/* </div> */}
-                    {children}
 
+                    {children}
                 </div>
             </div>
 

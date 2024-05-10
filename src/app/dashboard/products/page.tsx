@@ -27,8 +27,8 @@ export default async function ShowProductInTable() {
                                 <div className="product-details">
                                     <p><span>Fabricante:</span> {product.manufacturer}</p>
                                     <p><span>Quantidade:</span> {product.quantity}</p>
-                                    <p><span>Fabricado:</span> {dayjs(product.manufacturingDate).format('DD-MM-YYYY')}</p>
-                                    <p><span>Validade:</span> {dayjs(product.dueDate).format('DD-MM-YYYY')}</p>
+                                    <p>Fab: <span className="text-fab">{dayjs(product.manufacturingDate).format('DD/MM/YYYY')}</span></p>
+                                    <p>Val: <span className="text-val">{dayjs(product.dueDate).format('DD-MM-YYYY')}</span></p>
                                 </div>
                             </div>
                             <div className="product-actions">
@@ -42,8 +42,6 @@ export default async function ShowProductInTable() {
                         </div>
                     ))}
                 </div>
-
-
             </DashboardComponent>
         </>
     )
