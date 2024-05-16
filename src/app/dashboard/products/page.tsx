@@ -1,11 +1,8 @@
 import DashboardComponent, { fetchProducts } from "@/app/components/DashboardComponent";
 import dayjs from "dayjs";
 import Link from "next/link";
-
-
 // deixando a rota dinâmica para ser atualizada assim que alguma chamada HTTP for feita
 export const dynamic = 'force-dynamic';
-
 
 export function priceFormater(number: number): string {
     return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -42,6 +39,7 @@ export default async function ShowProductInTable() {
                         </div>
                     ))}
                 </div>
+
             </DashboardComponent>
         </>
     )

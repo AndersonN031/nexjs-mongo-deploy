@@ -621,3 +621,12 @@ h1 {
 .body-form {
     background-color: #292929;
 }
+
+/* spinner */
+
+.spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
