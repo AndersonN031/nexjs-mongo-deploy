@@ -26,7 +26,7 @@ export const handleUpdateProduct = async (id: string, product: any, notifyUpdate
 
 export const handleDeleteProduct = async (id: string, notifyDelete: Function) => {
     try {
-        await deleteProduct(id);
+        await deleteProduct(id)
         notifyDelete();
         setTimeout(() => {
             window.location.href = '/dashboard/products';
