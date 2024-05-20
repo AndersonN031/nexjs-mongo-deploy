@@ -1,7 +1,8 @@
-import DashboardComponent, { fetchProducts } from "@/app/components/DashboardComponent";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { priceFormater } from "../products/page";
+import MenuComponent from "@/app/components/MenuComponent";
+import { fetchProducts } from "@/app/services/productService";
 
 export const dynamic = 'force-dynamic';
 
@@ -11,8 +12,8 @@ export default async function LowStockProduct() {
 
     return (
         <>
-            <DashboardComponent>
 
+            <MenuComponent>
                 <div className="product-container">
                     {lowStockProducts.map((product, i) => (
                         <div className="product-card" key={i}>
@@ -37,7 +38,8 @@ export default async function LowStockProduct() {
                         </div>
                     ))}
                 </div>
-            </DashboardComponent>
+            </MenuComponent>
+
         </>
     )
 }

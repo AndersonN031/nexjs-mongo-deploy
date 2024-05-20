@@ -1,4 +1,6 @@
-import DashboardComponent, { fetchProducts } from "@/app/components/DashboardComponent";
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import MenuComponent from "@/app/components/MenuComponent";
+import { fetchProducts } from "@/app/services/productService";
 import dayjs from "dayjs";
 import Link from "next/link";
 // deixando a rota dinâmica para ser atualizada assim que alguma chamada HTTP for feita
@@ -14,7 +16,7 @@ export default async function ShowProductInTable() {
 
     return (
         <>
-            <DashboardComponent>
+            <MenuComponent>
                 <div className="product-container">
                     {products.map((product: any, i: any) => (
                         <div className="product-card" key={i}>
@@ -39,8 +41,9 @@ export default async function ShowProductInTable() {
                         </div>
                     ))}
                 </div>
+            </MenuComponent>
 
-            </DashboardComponent>
+
         </>
     )
 }

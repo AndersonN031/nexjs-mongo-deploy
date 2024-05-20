@@ -6,6 +6,7 @@ import HeaderComponent from '@/app/components/HeaderComponent';
 import Link from "next/link"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import { addProduct } from '@/app/services/productService';
 
 const ProductForm = () => {
     const [productName, setProductName] = useState('');
@@ -31,18 +32,20 @@ const ProductForm = () => {
     const handleSubmit = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
 
-        try {
-            // POST para a rota /api/products onde contém nosso GET e POST
-            const response = await axios.post('/api/products', {
-                name: productName,
-                price: productPrice,
-                manufacturer: manufacturer,
-                quantity: productQuantity,
-                manufacturingDate: manufacturingDate,
-                dueDate: dueDate
-            });
 
-            console.log('Produto adicionado:', response.data);
+        // POST para a rota addProduct onde contém nosso GET e POST
+        const newProduct = {
+            name: productName,
+            price: productPrice,
+            manufacturer: manufacturer,
+            quantity: productQuantity,
+            manufacturingDate: manufacturingDate,
+            dueDate: dueDate
+        };
+
+        try {
+            const response = await addProduct(newProduct)
+            console.log('Produto adicionado:', response);
 
             setProductName('');
             setProductPrice('');
@@ -51,10 +54,11 @@ const ProductForm = () => {
             setManufacturingDate('');
             setDueDate('');
             notifySuccess()
-            
+
         } catch (error) {
-            console.error('Erro ao adicionar produto:', error);
+            console.log('Erro ao aidiconar produto: ', error)
         }
+
     };
     return (
         <>

@@ -1,21 +1,35 @@
 "use client"
-import DashboardComponent from "@/app/components/DashboardComponent";
-import axios from "axios";
+import MenuComponent from "@/app/components/MenuComponent";
+import { fetchProductData, handleDeleteProduct } from "@/app/controllers/productController";
 import dayjs from "dayjs";
+import { useEffect, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'react-toastify/dist/ReactToastify.css'
-function priceFormater(number: number): string {
-  return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+
+function priceFormater(number: number) {
+  return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
-// criando uma rota dinâmica para exibir o produto e suas informações
-export default async function GetId({ params }: any) {
-  // desestruturando o id; IMPORTANTE passar ele como _id e não apenas como id.
+export interface Product {
+  _id: string;
+  name: string;
+  price: number;
+  manufacturer: string;
+  quantity: number;
+  manufacturingDate: string;
+  dueDate: string;
+}
+
+export default function GetId({ params }: any) {
   const { _id } = params;
+  const [product, setProduct] = useState<Product | null>(null);
 
-  // criando um metodo para deletar o produto passando o _id do mesmo.
-  async function removeProduct(productId: any) {
+  useEffect(() => {
+    fetchProductData(_id, setProduct)
+  }, [_id]);
 
+  const removeProduct = async (productId: string) => {
     const notifyDelete = () => toast.error("Produto excluído com sucesso!", {
       position: "bottom-right",
       autoClose: 1600,
@@ -25,81 +39,46 @@ export default async function GetId({ params }: any) {
       draggable: true,
       progress: undefined,
       theme: 'colored'
-    })
+    });
 
     try {
-      const response = await axios.delete(`https://nexjs-mongo-deploy.vercel.app/api/products/${productId}`)
-
-      // const response = await axios.delete(`http://localhost:3000/api/products/${productId}`)
-      // verificando se ocorreu tudo bem então retornando para a rota /dashboard/products
-      if (response.status === 200) {
-        notifyDelete();
-        setTimeout(() => {
-          window.location.href = "/dashboard/products";
-        }, 2000)
-      }
+      await handleDeleteProduct(productId, notifyDelete);
     } catch (error) {
-      console.error("Erro ao buscar produtos:", error);
-      alert("Error removing product")
+      console.error("Erro ao deletar o produto:", error);
     }
+  };
+
+
+  if (!product) {
+    return <div>Loading...</div>;
   }
 
-
-  // tratando o metodo get da api para retornar a rota dinâmica atráves do _id
-  try {
-    const response = await axios.get(`https://nexjs-mongo-deploy.vercel.app/api/products/${_id}`)
-
-    // const response = await axios.get(`http://localhost:3000/api/products/${_id}`)
-    const productData = response.data;
-    console.log("Valor retornado: ", productData.product.name);
-
-    // verificando se o produto ainda existe
-
-    if (!productData) {
-      console.error("Nenhum produto encontrado com o ID:", _id);
-      return (
-        <>
-          <h1>Produto não encontrado</h1>
-        </>
-      );
-    }
-
-
-    return (
-      <>
-        <DashboardComponent>
-          <div className="container-product-id">
-            <p className="title-product-id">Produto: {productData.product.name}</p>
-            <div className="product-info">
-              <div className="product-price-info">
-                <p>Preço: {typeof productData.product.price === 'number' ? priceFormater(productData.product.price) : 'Preço indisponível'}</p>
-              </div>
-
-              <div className="product-manufacturer-info">
-                <p>Fabricante: {productData.product.manufacturer}</p>
-              </div>
-
-              <div className="product-quantity-info">
-                <p>Quantidade: {productData.product.quantity} unid.</p>
-              </div>
-            </div>
-            <p className="product-manufacturer">Fabricado em: {dayjs(productData.product.manufacturingDate).format("DD/MM/YYYY")}</p>
-            <p className="product-manufacturer">Válido até: {dayjs(productData.product.dueDate).format("DD/MM/YYYY")}</p>
-
-            <div className="container-btn-product">
-
-              <button className="remove-btn" onClick={() => removeProduct(productData.product._id)}>
-                <i className="bi bi-trash-fill"></i>
-              </button>
-
-            </div>
+  return (
+    <>
+      {/* <MenuComponent> */}
+      <div className="container-product-id">
+        <p className="title-product-id">Produto: {product.name}</p>
+        <div className="product-info">
+          <div className="product-price-info">
+            <p>Preço: {typeof product.price === 'number' ? priceFormater(product.price) : 'Preço indisponível'}</p>
           </div>
-          <ToastContainer />
-        </DashboardComponent>
-
-      </>
-    );
-  } catch (error) {
-    console.error("Erro ao buscar produto:", error);
-  }
+          <div className="product-manufacturer-info">
+            <p>Fabricante: {product.manufacturer}</p>
+          </div>
+          <div className="product-quantity-info">
+            <p>Quantidade: {product.quantity} unid.</p>
+          </div>
+        </div>
+        <p className="product-manufacturer">Fabricado em: {dayjs(product.manufacturingDate).format("DD/MM/YYYY")}</p>
+        <p className="product-manufacturer">Válido até: {dayjs(product.dueDate).format("DD/MM/YYYY")}</p>
+        <div className="container-btn-product">
+          <button className="remove-btn" onClick={() => removeProduct(product._id)}>
+            <i className="bi bi-trash-fill"></i>
+          </button>
+        </div>
+      </div>
+      <ToastContainer />
+      {/* </MenuComponent> */}
+    </>
+  );
 }

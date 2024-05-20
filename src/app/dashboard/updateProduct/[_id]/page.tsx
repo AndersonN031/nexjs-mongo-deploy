@@ -1,6 +1,6 @@
 "use client"
 import HeaderComponent from "@/app/components/HeaderComponent";
-import axios from "axios";
+import { fetchProductData, handleUpdateProduct } from "@/app/controllers/productController";
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
@@ -18,12 +18,9 @@ export default function UpdateProduct({ params }: any) {
 
     // Função para carregar os dados do produto existente
     useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios.get(`https://nexjs-mongo-deploy.vercel.app/api/products/${_id}`);
-            // const response = await axios.get(`http://localhost:3000/api/products/${_id}`);
-            setProduct(response.data.product);
-        };
-        fetchData();
+        // const response = await axios.get(`https://nexjs-mongo-deploy.vercel.app/api/products/${_id}`);
+
+        fetchProductData(_id, setProduct)
     }, [_id]);
 
     const notifyUpdated = () => toast.info("Produto atualizado com sucesso!", {
@@ -48,19 +45,10 @@ export default function UpdateProduct({ params }: any) {
 
     // Função para atualizar o produto
     const updateProduct = async () => {
-        try {
-            const response = await axios.put(`https://nexjs-mongo-deploy.vercel.app/api/products/${_id}`, product);
-            // const response = await axios.put(`http://localhost:3000/api/products/${_id}`, product);
+        // const response = await axios.put(`https://nexjs-mongo-deploy.vercel.app/api/products/${_id}`, product);
 
-            notifyUpdated()
-            setTimeout(() => {
-                window.location.href = `/dashboard/products/${_id}`
-            }, 2000)
-            console.log(response.data);
-        } catch (error) {
-            // console.error('Erro ao atualizar o produto', error);
-            alert('Falha ao atualizar o produto.');
-        }
+        handleUpdateProduct(_id, product, notifyUpdated)
+
     };
 
     return (
