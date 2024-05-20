@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from 'react';
-import axios from 'axios';
 import HeaderComponent from '@/app/components/HeaderComponent';
 import Link from "next/link"
 import { ToastContainer, toast } from 'react-toastify';
