@@ -16,6 +16,7 @@
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "dayjs": "^1.11.10",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "formik": "^2.4.6",
     "mongodb": "^6.6.1",
