@@ -7,6 +7,7 @@ import bcrypt from "bcryptjs"
 // Criando uma autenticação com NextAuth
 const options = NextAuth({
     // definindo os provedores de autenticação
+    secret: process.env.NEXT_PUBLIC_BASE_URL,
     providers: [
         CredentialsProvider({
             id: "Credentials",
