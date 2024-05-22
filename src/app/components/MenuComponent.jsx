@@ -1,8 +1,12 @@
 "use client"
 import Image from "next/image"
 import userImg from "@/app/images/user-example.png"
+import { signOut, useSession } from "next-auth/react";
+import Button from "./ButtonComponent";
 
 export default function MenuComponent({ children }) {
+    const { status, data: session } = useSession();
+
     return (
         <>
             <div className="grid-dashboard">
@@ -16,7 +20,7 @@ export default function MenuComponent({ children }) {
                         />
 
                         <p>Anderson Nunes</p>
-                        <p className="email-p">exampleuser@gmail.com</p>
+                        <span>{`Olá ${session?.user?.name?.split(" ")[0]}`}</span>
                     </div>
                     <ul>
                         <div className="input-container">
@@ -30,6 +34,10 @@ export default function MenuComponent({ children }) {
                         <a href="/dashboard/products"><li><i className="bi bi-clipboard-data-fill"></i> Produtos</li></a>
                         <a href="/dashboard/lowStock"><li><i className="bi bi-hourglass-bottom"></i> Produtos acabando</li></a>
                         <a href="/dashboard/addProduct"><li><i className="bi bi-pie-chart"></i> Novo produto</li></a>
+                        <Button
+                            text="Sair"
+                            onClick={() => signOut()}
+                        />
                     </ul>
                 </div>
             </div>

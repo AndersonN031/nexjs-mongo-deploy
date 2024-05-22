@@ -17,7 +17,7 @@ export const handleUpdateProduct = async (id: string, product: any, notifyUpdate
         notifyUpdated();
         setTimeout(() => {
             window.location.href = `/dashboard/products/${id}`
-        }, 1000);
+        }, 1600);
     } catch (error) {
         console.log('Erro ao atualizar o produto', error);
     }

@@ -1,11 +1,12 @@
 "use client"
-import MenuComponent from "@/app/components/MenuComponent";
+import Spinner from "../../../components/SpinnerComponent";
 import { fetchProductData, handleDeleteProduct } from "@/app/controllers/productController";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'react-toastify/dist/ReactToastify.css'
+import LayoutAdmin from "@/app/components/LayoutAdminComponente";
 
 function priceFormater(number: number) {
   return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -50,35 +51,38 @@ export default function GetId({ params }: any) {
 
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <div><Spinner /></div>;
   }
 
   return (
     <>
       {/* <MenuComponent> */}
-      <div className="container-product-id">
-        <p className="title-product-id">Produto: {product.name}</p>
-        <div className="product-info">
-          <div className="product-price-info">
-            <p>Preço: {typeof product.price === 'number' ? priceFormater(product.price) : 'Preço indisponível'}</p>
+      <LayoutAdmin>
+        <div className="container-product-id">
+          <p className="title-product-id">Produto: {product.name}</p>
+          <div className="product-info">
+            <div className="product-price-info">
+              <p>Preço: {typeof product.price === 'number' ? priceFormater(product.price) : 'Preço indisponível'}</p>
+            </div>
+            <div className="product-manufacturer-info">
+              <p>Fabricante: {product.manufacturer}</p>
+            </div>
+            <div className="product-quantity-info">
+              <p>Quantidade: {product.quantity} unid.</p>
+            </div>
           </div>
-          <div className="product-manufacturer-info">
-            <p>Fabricante: {product.manufacturer}</p>
-          </div>
-          <div className="product-quantity-info">
-            <p>Quantidade: {product.quantity} unid.</p>
+          <p className="product-manufacturer">Fabricado em: {dayjs(product.manufacturingDate).format("DD/MM/YYYY")}</p>
+          <p className="product-manufacturer">Válido até: {dayjs(product.dueDate).format("DD/MM/YYYY")}</p>
+          <div className="container-btn-product">
+            <button className="remove-btn" onClick={() => removeProduct(product._id)}>
+              <i className="bi bi-trash-fill"></i>
+            </button>
           </div>
         </div>
-        <p className="product-manufacturer">Fabricado em: {dayjs(product.manufacturingDate).format("DD/MM/YYYY")}</p>
-        <p className="product-manufacturer">Válido até: {dayjs(product.dueDate).format("DD/MM/YYYY")}</p>
-        <div className="container-btn-product">
-          <button className="remove-btn" onClick={() => removeProduct(product._id)}>
-            <i className="bi bi-trash-fill"></i>
-          </button>
-        </div>
-      </div>
-      <ToastContainer />
-      {/* </MenuComponent> */}
+        <ToastContainer />
+        {/* </MenuComponent> */}
+      </LayoutAdmin >
     </>
+
   );
 }
