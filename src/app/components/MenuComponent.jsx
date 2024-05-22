@@ -5,7 +5,7 @@ import { signOut, useSession } from "next-auth/react";
 import Button from "./ButtonComponent";
 
 export default function MenuComponent({ children }) {
-    const { status, data: session } = useSession();
+    const { status, data: session } = useSession()
 
     return (
         <>
