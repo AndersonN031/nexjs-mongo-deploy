@@ -48,6 +48,28 @@
     transform: scale(1.05);
 }
 
+.container-logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.container-logout .btn-logout {
+    border: none;
+    background-color: #292929;
+    cursor: pointer;
+}
+
+.container-logout .btn-logout i {
+    color: #fff;
+    border: none;
+}
+
+.container-logout .btn-logout i:hover {
+    color: red;
+}
+
 /* HOME CONTAINER */
 
 .container {
@@ -187,13 +209,13 @@
 
 .img-menu .image-user {
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); */
 
 }
 
 .img-menu p {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .img-menu .email-p {
@@ -292,6 +314,36 @@
 i {
     color: #fff;
     font-size: 23px;
+}
+
+.btn-container-menu {
+    text-align: start;
+    padding: 20px 11%;
+}
+
+.btn-logout-menu {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.flex-btn-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.btn-logout-menu i {
+    display: flex;
+    font-size: 30px;
+}
+
+.btn-logout-menu i:hover {
+    color: red;
+}
+
+.btn-logout-menu p {
+    color: #fff;
 }
 
 /* DASHBOARD CONTAINER */

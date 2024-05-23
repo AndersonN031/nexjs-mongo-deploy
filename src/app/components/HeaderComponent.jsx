@@ -1,9 +1,8 @@
 "use client"
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import Button from "./ButtonComponent";
 import LayoutAdmin from "./LayoutAdminComponente";
-
+import 'bootstrap-icons/font/bootstrap-icons.css';
 export default function HeaderComponent() {
     const { status, data: session } = useSession();
 
@@ -33,14 +32,23 @@ export default function HeaderComponent() {
                                     <a>Dashboard</a>
                                 </Link>
                             </li>
+
+                            <div className="container-logout">
+
+                                <span>{`Olá ${session?.user?.name.split(" ")[0]}`}</span>
+
+                                <button
+                                    onClick={() => signOut()}
+                                    className="btn-logout"
+                                    title="Sair"
+                                >
+                                    <i className="bi bi-box-arrow-right"></i>
+                                </button>
+                            </div>
                         </ul>
-                        <Button
-                            text="Sair"
-                            onClick={() => signOut()}
-                        />
                     </nav>
                 </header>
-                <span>{`Olá ${session?.user?.name.split(" ")[0]}`}</span>
+                {/* <span>{`Olá ${session?.user?.name.split(" ")[0]}`}</span> */}
             </LayoutAdmin>
         </>
     )
