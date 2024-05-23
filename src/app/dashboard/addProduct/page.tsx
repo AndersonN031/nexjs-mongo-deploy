@@ -12,8 +12,10 @@ const ProductForm = () => {
     const [productPrice, setProductPrice] = useState('');
     const [manufacturer, setManufacturer] = useState('');
     const [productQuantity, setProductQuantity] = useState('');
+    const [productCategory, setProductCategory] = useState('');
     const [manufacturingDate, setManufacturingDate] = useState('');
     const [dueDate, setDueDate] = useState('');
+
 
     const notifySuccess = () => toast.success("Produto adicionado com sucesso!",
         {
@@ -32,12 +34,13 @@ const ProductForm = () => {
         event.preventDefault();
 
 
-        // POST para a rota addProduct onde contém nosso GET e POST
+        // mandando informações para o body do produto
         const newProduct = {
             name: productName,
             price: productPrice,
             manufacturer: manufacturer,
             quantity: productQuantity,
+            category: productCategory,
             manufacturingDate: manufacturingDate,
             dueDate: dueDate
         };
@@ -50,6 +53,7 @@ const ProductForm = () => {
             setProductPrice('');
             setManufacturer('');
             setProductQuantity('');
+            setProductCategory('');
             setManufacturingDate('');
             setDueDate('');
             notifySuccess()
@@ -108,6 +112,18 @@ const ProductForm = () => {
                                 className="input-form"
                                 required
                             />
+                        </div>
+                        <div className="form-input">
+                            <label htmlFor="manufacturingDate">Categoria:</label>
+                            <select onChange={(e) => setProductCategory(e.target.value)} required>
+                                <option value="" hidden>Selecione uma opção</option>
+                                <option value="Bebidas">Bebidas</option>
+                                <option value="Alimentos">Alimentos</option>
+                                <option value="Hortifruti">Hortifruti</option>
+                                <option value="Higiene pessoal">Higiene pessoal</option>
+                                <option value="Papelaria">Papelaria</option>
+                                <option value="Congelados e frios">Congelados e frios</option>
+                            </select>
                         </div>
                         <div className="form-input">
                             <label htmlFor="manufacturingDate">Fabricado:</label>

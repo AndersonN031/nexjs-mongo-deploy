@@ -614,7 +614,8 @@ h1 {
 
 .product-price-info,
 .product-manufacturer-info,
-.product-quantity-info {
+.product-quantity-info,
+.product-category-info {
     padding: 10px;
     background-color: #393939;
     color: #fff;

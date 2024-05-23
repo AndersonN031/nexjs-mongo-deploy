@@ -7,6 +7,7 @@ const schema = new mongoose.Schema({
     manufacturer: { type: String, required: true },
     quantity: { type: Number, required: true },
     manufacturingDate: { type: Date, required: true },
+    category: { type: String, required: true},
     dueDate: { type: Date, required: true },
     createdAt: { type: Date, default: () => Date.now() }
 

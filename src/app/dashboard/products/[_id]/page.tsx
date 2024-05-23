@@ -18,6 +18,7 @@ export interface Product {
   price: number;
   manufacturer: string;
   quantity: number;
+  category: string;
   manufacturingDate: string;
   dueDate: string;
 }
@@ -69,6 +70,9 @@ export default function GetId({ params }: any) {
             </div>
             <div className="product-quantity-info">
               <p>Quantidade: {product.quantity} unid.</p>
+            </div>
+            <div className="product-category-info">
+              <p>Categoria: {product.category}</p>
             </div>
           </div>
           <p className="product-manufacturer">Fabricado em: {dayjs(product.manufacturingDate).format("DD/MM/YYYY")}</p>
