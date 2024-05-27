@@ -6,6 +6,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { addProduct } from '@/app/services/productService';
 import LayoutAdmin from '@/app/components/LayoutAdminComponente';
+import dayjs from 'dayjs';
+
 
 const ProductForm = () => {
     const [productName, setProductName] = useState('');

@@ -7,6 +7,10 @@ import Link from "next/link";
 import * as Yup from "yup"
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Image from "next/image"
+import ImagemEstoque from "@/app/images/imagem-estoque.jpg"
+import ImagemVetorLogin from "@/app/images/vetor-login.jpg"
+
 
 export default function Login() {
     const [error, setError] = useState("")
@@ -67,8 +71,15 @@ export default function Login() {
     }
 
     return (
-        <div>
-            <main className="min-screen">
+
+        <main className="min-screen">
+            <div className="container-form-login">
+                <h1>Faça login na sua conta</h1>
+                <Image
+                    src={ImagemVetorLogin}
+                    width={250}
+                    height={250}
+                />
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
@@ -76,12 +87,13 @@ export default function Login() {
                 >
                     {({ values }) =>
                         <Form noValidate className="flex-form">
+
                             <InputComponent
                                 name="email"
                                 type="email"
                                 label="Email"
                                 required
-                                placeholder="example@gmail.com"
+                                placeholder="emailfuncionario@gmail.com"
                             />
 
                             <InputComponent
@@ -91,7 +103,6 @@ export default function Login() {
                                 autoComplete="off"
                                 required
                             />
-
                             <div className="container-btn-login">
                                 <ButtonComponent
                                     type="submit"
@@ -111,7 +122,14 @@ export default function Login() {
                             </div>
                         </Form>}
                 </Formik>
-            </main>
-        </div>
+            </div>
+            <div className="container-imagem-estoque">
+                <Image
+                    src={ImagemEstoque}
+                    className="image-estoque"
+                />
+            </div>
+        </main>
+
     )
 }

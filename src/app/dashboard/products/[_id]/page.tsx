@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'react-toastify/dist/ReactToastify.css'
 import LayoutAdmin from "@/app/components/LayoutAdminComponente";
+import formatarData, { formatarDataAndMinute } from "@/app/services/formatDataService";
 
 function priceFormater(number: number) {
   return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -21,6 +22,7 @@ export interface Product {
   category: string;
   manufacturingDate: string;
   dueDate: string;
+  createdAt: string;
 }
 
 export default function GetId({ params }: any) {
@@ -75,12 +77,15 @@ export default function GetId({ params }: any) {
               <p>Categoria: {product.category}</p>
             </div>
           </div>
-          <p className="product-manufacturer">Fabricado em: {dayjs(product.manufacturingDate).format("DD/MM/YYYY")}</p>
-          <p className="product-manufacturer">Válido até: {dayjs(product.dueDate).format("DD/MM/YYYY")}</p>
+          <p className="product-manufacturer">Fabricado em: {formatarData(product.manufacturingDate)}</p>
+          <p className="product-manufacturer">Válido até: {formatarData(product.dueDate)}</p>
           <div className="container-btn-product">
             <button className="remove-btn" onClick={() => removeProduct(product._id)}>
               <i className="bi bi-trash-fill"></i>
             </button>
+          </div>
+          <div>
+            <p>Produto criado em: {formatarDataAndMinute(product.createdAt)}</p>
           </div>
         </div>
         <ToastContainer />

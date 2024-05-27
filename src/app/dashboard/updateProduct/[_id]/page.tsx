@@ -1,5 +1,4 @@
 "use client"
-import HeaderComponent from "@/app/components/HeaderComponent";
 import LayoutAdmin from "@/app/components/LayoutAdminComponente";
 import { fetchProductData, handleUpdateProduct } from "@/app/controllers/productController";
 import React, { useState, useEffect } from "react";
@@ -19,8 +18,6 @@ export default function UpdateProduct({ params }: any) {
 
     // Função para carregar os dados do produto existente
     useEffect(() => {
-        // const response = await axios.get(`https://nexjs-mongo-deploy.vercel.app/api/products/${_id}`);
-
         fetchProductData(_id, setProduct)
     }, [_id]);
 
@@ -46,8 +43,6 @@ export default function UpdateProduct({ params }: any) {
 
     // Função para atualizar o produto
     const updateProduct = async () => {
-        // const response = await axios.put(`https://nexjs-mongo-deploy.vercel.app/api/products/${_id}`, product);
-
         handleUpdateProduct(_id, product, notifyUpdated)
 
     };

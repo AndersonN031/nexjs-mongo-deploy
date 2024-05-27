@@ -1,13 +1,14 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import MenuComponent from "@/app/components/MenuComponent";
 import { fetchProducts } from "@/app/services/productService";
-import dayjs from "dayjs";
+import formatData from "../../services/formatDataService"
 import Link from "next/link";
 import LayoutAdmin from '@/app/components/LayoutAdminComponente';
+
 // deixando a rota dinâmica para ser atualizada assim que alguma chamada HTTP for feita
 export const dynamic = 'force-dynamic';
 
-export function priceFormater(number: number): string {
+export function priceFormater(number) {
     return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
@@ -20,7 +21,7 @@ export default async function ShowProductInTable() {
             <LayoutAdmin>
                 <MenuComponent>
                     <div className="product-container">
-                        {products.map((product: any, i: any) => (
+                        {products.map((product, i) => (
                             <div className="product-card" key={i}>
                                 <div className="product-info">
                                     <h3 className="product-name">{product.name}</h3>
@@ -28,8 +29,8 @@ export default async function ShowProductInTable() {
                                     <div className="product-details">
                                         <p><span>Fabricante:</span> {product.manufacturer}</p>
                                         <p><span>Quantidade:</span> {product.quantity}</p>
-                                        <p>Fab: <span className="text-fab">{dayjs(product.manufacturingDate).format('DD/MM/YYYY')}</span></p>
-                                        <p>Val: <span className="text-val">{dayjs(product.dueDate).format('DD-MM-YYYY')}</span></p>
+                                        <p>Fab: <span className="text-fab">{formatData(product.manufacturingDate)}</span></p>
+                                        <p>Val: <span className="text-val">{formatData(product.dueDate)}</span></p>
                                     </div>
                                 </div>
                                 <div className="product-actions">

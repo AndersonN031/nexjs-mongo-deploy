@@ -8,7 +8,8 @@ import Link from "next/link";
 import * as Yup from "yup"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
-
+import Image from "next/image"
+import ImagemEstoque from "@/app/images/imagem-estoque.jpg"
 
 export default function Register() {
     const [error, setError] = useState("")
@@ -87,51 +88,60 @@ export default function Register() {
         <>
             <ToastContainer />
             <main className="min-screen">
-                <Formik
-                    initialValues={initialValues}
-                    validationSchema={validationSchema}
-                    onSubmit={handleSubmit}
-                >
-                    {({ values }) => <Form noValidate className="flex-form">
-                        <InputComponent
-                            name="name"
-                            type="name"
-                            label="Nome"
-                            required
-                            placeholder="Seu nome" />
+                <div className="container-imagem-estoque-register">
+                    <Image
+                        src={ImagemEstoque}
+                        className="image-estoque image-estoque-resgister"
+                    />
+                </div>
+                <div className="container-form-register">
+                    <h1>Crie sua conta</h1>
+                    <Formik
+                        initialValues={initialValues}
+                        validationSchema={validationSchema}
+                        onSubmit={handleSubmit}
+                    >
 
-                        <InputComponent
-                            name="email"
-                            type="email"
-                            label="Email"
-                            required
-                            placeholder="example@gmail.com" />
 
-                        <InputComponent
-                            name="password"
-                            type="password"
-                            label="Senha"
-                            autoComplete="off"
-                            required />
+                        {({ values }) => <Form noValidate className="flex-form">
+                            <InputComponent
+                                name="name"
+                                type="name"
+                                label="Nome completo"
+                                required
+                                placeholder="Seu nome" />
+                            <InputComponent
+                                name="email"
+                                type="email"
+                                label="Email"
+                                required
+                                placeholder="example@gmail.com" />
+                            <InputComponent
+                                name="password"
+                                type="password"
+                                label="Senha"
+                                autoComplete="off"
+                                required />
+                            <div className="container-btn-login">
+                                <ButtonComponent
+                                    type="submit"
+                                    text={isFormSubmitting ? "Carregando..." : "Inscrever-se"}
+                                    disabled={isFormSubmitting}
+                                    className="btn-login" />
+                                {!values.name && !values.email && !values.password && error && (
+                                    <span className="text-red">{error}</span>
+                                )}
+                                <span>
+                                    Já Possui uma conta ?
+                                    <strong>
+                                        <Link href="/login" className="subscribe-link">Entre</Link>
+                                    </strong>
+                                </span>
+                            </div>
+                        </Form>}
+                    </Formik>
+                </div>
 
-                        <div className="container-btn-login">
-                            <ButtonComponent
-                                type="submit"
-                                text={isFormSubmitting ? "Carregando..." : "Inscrever-se"}
-                                disabled={isFormSubmitting}
-                                className="btn-login" />
-                            {!values.name && !values.email && !values.password && error && (
-                                <span className="text-red">{error}</span>
-                            )}
-                            <span>
-                                Não Possui uma conta ?
-                                <strong>
-                                    <Link href="/login" className="subscribe-link">Entre</Link>
-                                </strong>
-                            </span>
-                        </div>
-                    </Form>}
-                </Formik>
             </main>
 
         </>
