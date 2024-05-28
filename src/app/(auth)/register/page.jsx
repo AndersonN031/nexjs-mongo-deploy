@@ -1,10 +1,15 @@
 "use client"
+
 import React, { useState } from "react";
 import { Form, Formik } from "formik"
 import InputComponent from "../../components/InputComponet"
 import ButtonComponent from "../../components/ButtonComponent"
 import Link from "next/link";
 import * as Yup from "yup"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+import Image from "next/image"
+import ImagemEstoque from "@/app/images/imagem-estoque.jpg"
 
 export default function Register() {
     const [error, setError] = useState("")
@@ -25,6 +30,7 @@ export default function Register() {
     })
 
 
+
     async function handleSubmit(values, { resetForm }) {
         setFormSubmitting(true)
         try {
@@ -41,9 +47,23 @@ export default function Register() {
             }).then(async (res) => {
                 const result = await res.json();
 
+                const notifySuccess = () => toast.success(result.message, {
+                    position: "bottom-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'colored'
+                });
+
+
                 if (result.status === 201) {
-                    alert(result.message)
-                    window.location.href = "/login"
+                    notifySuccess()
+                    setTimeout(() => {
+                        window.location.href = "/login"
+                    }, 3000)
                 } else {
                     renderError(result.message);
                     resetForm();
@@ -65,59 +85,65 @@ export default function Register() {
     }
 
     return (
-        <div>
+        <>
+            <ToastContainer />
             <main className="min-screen">
-                <Formik
-                    initialValues={initialValues}
-                    validationSchema={validationSchema}
-                    onSubmit={handleSubmit}
-                >
-                    {({ values }) =>
-                        <Form noValidate className="flex-form">
+                <div className="container-imagem-estoque-register">
+                    <Image
+                        src={ImagemEstoque}
+                        className="image-estoque image-estoque-resgister"
+                    />
+                </div>
+                <div className="container-form-register">
+                    <h1>Crie sua conta</h1>
+                    <Formik
+                        initialValues={initialValues}
+                        validationSchema={validationSchema}
+                        onSubmit={handleSubmit}
+                    >
+
+
+                        {({ values }) => <Form noValidate className="flex-form">
                             <InputComponent
                                 name="name"
                                 type="name"
-                                label="Nome"
+                                label="Nome completo"
                                 required
-                                placeholder="Seu nome"
-                            />
-
+                                placeholder="Seu nome" />
                             <InputComponent
                                 name="email"
                                 type="email"
                                 label="Email"
                                 required
-                                placeholder="example@gmail.com"
-                            />
-
+                                placeholder="example@gmail.com" />
                             <InputComponent
                                 name="password"
                                 type="password"
                                 label="Senha"
                                 autoComplete="off"
-                                required
-                            />
-
+                                required />
                             <div className="container-btn-login">
                                 <ButtonComponent
                                     type="submit"
                                     text={isFormSubmitting ? "Carregando..." : "Inscrever-se"}
                                     disabled={isFormSubmitting}
-                                    className="btn-login"
-                                />
+                                    className="btn-login" />
                                 {!values.name && !values.email && !values.password && error && (
                                     <span className="text-red">{error}</span>
                                 )}
                                 <span>
-                                    Não Possui uma conta ?
+                                    Já Possui uma conta ?
                                     <strong>
                                         <Link href="/login" className="subscribe-link">Entre</Link>
                                     </strong>
                                 </span>
                             </div>
                         </Form>}
-                </Formik>
+                    </Formik>
+                </div>
+
             </main>
-        </div>
+
+        </>
     )
 }

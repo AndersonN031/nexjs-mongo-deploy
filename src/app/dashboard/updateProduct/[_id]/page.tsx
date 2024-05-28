@@ -1,5 +1,5 @@
 "use client"
-import HeaderComponent from "@/app/components/HeaderComponent";
+import LayoutAdmin from "@/app/components/LayoutAdminComponente";
 import { fetchProductData, handleUpdateProduct } from "@/app/controllers/productController";
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
@@ -18,8 +18,6 @@ export default function UpdateProduct({ params }: any) {
 
     // Função para carregar os dados do produto existente
     useEffect(() => {
-        // const response = await axios.get(`https://nexjs-mongo-deploy.vercel.app/api/products/${_id}`);
-
         fetchProductData(_id, setProduct)
     }, [_id]);
 
@@ -45,86 +43,84 @@ export default function UpdateProduct({ params }: any) {
 
     // Função para atualizar o produto
     const updateProduct = async () => {
-        // const response = await axios.put(`https://nexjs-mongo-deploy.vercel.app/api/products/${_id}`, product);
-
         handleUpdateProduct(_id, product, notifyUpdated)
 
     };
 
     return (
         <>
-            <HeaderComponent />
-
-            <div>
-                <form onSubmit={e => {
-                    e.preventDefault();
-                    updateProduct();
-                }}>
-                    <div className="container-form">
-                        <div className="form-input">
-                            <label>Nome:</label>
-                            <input
-                                type="text"
-                                name="name"
-                                value={product.name}
-                                onChange={handleChange}
-                                className="input-form"
-                            />
+            <LayoutAdmin>
+                <div>
+                    <form onSubmit={e => {
+                        e.preventDefault();
+                        updateProduct();
+                    }}>
+                        <div className="container-form">
+                            <div className="form-input">
+                                <label>Nome:</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={product.name}
+                                    onChange={handleChange}
+                                    className="input-form"
+                                />
+                            </div>
+                            <div className="form-input">
+                                <label>Preço:</label>
+                                <input
+                                    type="number"
+                                    name="price"
+                                    value={product.price}
+                                    onChange={handleChange}
+                                    className="input-form"
+                                />
+                            </div>
+                            <div className="form-input">
+                                <label>Fabricante:</label>
+                                <input
+                                    type="text"
+                                    name="manufacturer"
+                                    value={product.manufacturer}
+                                    onChange={handleChange}
+                                    className="input-form"
+                                />
+                            </div>
+                            <div>
+                                <label>Quantidade:</label>
+                                <input
+                                    type="number"
+                                    name="quantity"
+                                    value={product.quantity}
+                                    onChange={handleChange}
+                                    className="input-form"
+                                />
+                            </div>
+                            <div className="form-input">
+                                <label>Data de Fabricação:</label>
+                                <input
+                                    type="date"
+                                    name="manufacturingDate"
+                                    value={product.manufacturingDate}
+                                    onChange={handleChange}
+                                    className="input-form"
+                                />
+                            </div>
+                            <div className="form-input">
+                                <label>Data de Validade:</label>
+                                <input
+                                    type="date"
+                                    name="dueDate"
+                                    value={product.dueDate}
+                                    onChange={handleChange}
+                                    className="input-form"
+                                />
+                            </div>
+                            <button type="submit" className="btn-save">Salvar</button>
                         </div>
-                        <div className="form-input">
-                            <label>Preço:</label>
-                            <input
-                                type="number"
-                                name="price"
-                                value={product.price}
-                                onChange={handleChange}
-                                className="input-form"
-                            />
-                        </div>
-                        <div className="form-input">
-                            <label>Fabricante:</label>
-                            <input
-                                type="text"
-                                name="manufacturer"
-                                value={product.manufacturer}
-                                onChange={handleChange}
-                                className="input-form"
-                            />
-                        </div>
-                        <div>
-                            <label>Quantidade:</label>
-                            <input
-                                type="number"
-                                name="quantity"
-                                value={product.quantity}
-                                onChange={handleChange}
-                                className="input-form"
-                            />
-                        </div>
-                        <div className="form-input">
-                            <label>Data de Fabricação:</label>
-                            <input
-                                type="date"
-                                name="manufacturingDate"
-                                value={product.manufacturingDate}
-                                onChange={handleChange}
-                                className="input-form"
-                            />
-                        </div>
-                        <div className="form-input">
-                            <label>Data de Validade:</label>
-                            <input
-                                type="date"
-                                name="dueDate"
-                                value={product.dueDate}
-                                onChange={handleChange}
-                                className="input-form"
-                            />
-                        </div>
-                        <button type="submit" className="btn-save">Salvar</button>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
+            </LayoutAdmin>
             <ToastContainer />
         </>
     );

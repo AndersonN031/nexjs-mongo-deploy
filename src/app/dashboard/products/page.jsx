@@ -1,22 +1,27 @@
-import dayjs from "dayjs";
-import Link from "next/link";
-import { priceFormater } from "../products/page";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import MenuComponent from "@/app/components/MenuComponent";
 import { fetchProducts } from "@/app/services/productService";
-import LayoutAdmin from "@/app/components/LayoutAdminComponente";
+import formatData from "../../services/formatDataService"
+import Link from "next/link";
+import LayoutAdmin from '@/app/components/LayoutAdminComponente';
 
+// deixando a rota dinâmica para ser atualizada assim que alguma chamada HTTP for feita
 export const dynamic = 'force-dynamic';
 
-export default async function LowStockProduct() {
-    const products = await fetchProducts();
-    const lowStockProducts = products.filter(product => product.quantity <= 10);
+export function priceFormater(number) {
+    return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+}
+
+// criando uma table para exibir todos os produtos da API
+export default async function ShowProductInTable() {
+    let products = await fetchProducts()
 
     return (
         <>
             <LayoutAdmin>
                 <MenuComponent>
                     <div className="product-container">
-                        {lowStockProducts.map((product, i) => (
+                        {products.map((product, i) => (
                             <div className="product-card" key={i}>
                                 <div className="product-info">
                                     <h3 className="product-name">{product.name}</h3>
@@ -24,8 +29,8 @@ export default async function LowStockProduct() {
                                     <div className="product-details">
                                         <p><span>Fabricante:</span> {product.manufacturer}</p>
                                         <p><span>Quantidade:</span> {product.quantity}</p>
-                                        <p><span>Fab:</span> {dayjs(product.manufacturingDate).format('DD/MM/YYYY')}</p>
-                                        <p><span>Val:</span> {dayjs(product.dueDate).format('DD-MM-YYYY')}</p>
+                                        <p>Fab: <span className="text-fab">{formatData(product.manufacturingDate)}</span></p>
+                                        <p>Val: <span className="text-val">{formatData(product.dueDate)}</span></p>
                                     </div>
                                 </div>
                                 <div className="product-actions">
@@ -40,7 +45,9 @@ export default async function LowStockProduct() {
                         ))}
                     </div>
                 </MenuComponent>
+
             </LayoutAdmin>
+
 
         </>
     )

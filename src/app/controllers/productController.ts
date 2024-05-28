@@ -1,4 +1,5 @@
 // Criando um controller para gerenciar a lógica do service
+import dayjs from "dayjs";
 import { deleteProduct, getProductId, updateProduct } from "../services/productService"
 
 
@@ -14,10 +15,11 @@ export const fetchProductData = async (id: string, setProduct: Function) => {
 export const handleUpdateProduct = async (id: string, product: any, notifyUpdated: Function) => {
     try {
         await updateProduct(id, product);
+        product.manufacturingDate = dayjs(product.manufacturingDate).format("DD/MM/YYYY")
         notifyUpdated();
         setTimeout(() => {
             window.location.href = `/dashboard/products/${id}`
-        }, 1000);
+        }, 1600);
     } catch (error) {
         console.log('Erro ao atualizar o produto', error);
     }
