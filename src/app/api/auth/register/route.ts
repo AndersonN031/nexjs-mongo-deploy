@@ -7,13 +7,12 @@ export async function POST(req: Request) {
     try {
         const { name, email, password } = await req.json();
         await connectDB();
-
         // verificando se o e-mail já está cadastrado
         const emailExists = await User.findOne({ email });
 
         if (emailExists) {
             return NextResponse.json({
-                message: "E-mail já cadastrado!",
+                message: "E-mail já cadastrado!", email,
                 status: 409,
             })
         }
@@ -22,11 +21,11 @@ export async function POST(req: Request) {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const newUSer = new User({
-            name, 
+            name,
             email,
-            password:  hashedPassword
+            password: hashedPassword
         })
-        
+
         await newUSer.save();
 
         return NextResponse.json({
@@ -35,6 +34,7 @@ export async function POST(req: Request) {
         })
 
     } catch (error) {
+        console.error("Erro ao cadastrar usuário:", error)
         return NextResponse.json({
             error: "Erro ao cadastrar usuário.",
             status: 500,

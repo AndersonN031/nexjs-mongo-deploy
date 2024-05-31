@@ -547,6 +547,10 @@ h1 {
 
 /* PRODUCTS */
 
+.input-products {
+    margin: 10px 30%;
+}
+
 .product-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;

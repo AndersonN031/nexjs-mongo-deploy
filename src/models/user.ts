@@ -10,7 +10,7 @@ const userSchema = new Schema(
         // createdAt: { type: Date, default: () => Date.now() },
         // updatedAt: { type: Date, default: () => Date.now() }
     },
-    {timestamps: true}
+    { timestamps: true }
 )
 
 const modelName = mongoose.models.User || mongoose.model("User", userSchema);
