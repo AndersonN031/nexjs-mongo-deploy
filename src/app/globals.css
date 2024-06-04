@@ -721,9 +721,7 @@ h1 {
 
 /* spinner */
 
-.spinner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+body{
+    background-color: #bebebe;
 }
+/* teste */
