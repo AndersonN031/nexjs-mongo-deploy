@@ -2,7 +2,7 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import MenuComponent from "@/app/components/MenuComponent";
 import { fetchProducts } from "@/app/services/productService";
-import formatData from "../../services/formatDataService"
+// import formatData from "../../services/formatDataService"
 import Link from "next/link";
 import LayoutAdmin from '@/app/components/LayoutAdminComponente';
 import { useEffect, useState } from 'react';
