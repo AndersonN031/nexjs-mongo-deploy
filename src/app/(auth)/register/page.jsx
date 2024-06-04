@@ -1,5 +1,4 @@
 "use client"
-
 import React, { useState } from "react";
 import { Form, Formik } from "formik"
 import InputComponent from "../../components/InputComponet"
@@ -10,6 +9,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import Image from "next/image"
 import ImagemEstoque from "@/app/images/imagem-estoque.jpg"
+import mediaqueries from "../../styles/mediaqueries.module.css"
+
 
 export default function Register() {
     const [error, setError] = useState("")
@@ -106,8 +107,8 @@ export default function Register() {
     return (
         <>
             <ToastContainer />
-            <main className="min-screen">
-                <div className="container-imagem-estoque-register">
+            <main className={`min-screen ${mediaqueries.minScreenRegister}`}>
+                <div className={`container-imagem-estoque-register ${mediaqueries.containerImageEstoqueRegister}`}>
                     <Image
                         src={ImagemEstoque}
                         className="image-estoque image-estoque-resgister"
