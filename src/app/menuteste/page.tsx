@@ -7,7 +7,7 @@ export default function menutxt (){
     return (
         
     <>
-            // <h1 className={style.titulo} >hello word</h1>
+            
             <aside className={style.sidebar}>
                 <div className={style.sidebarhead}>
                     <Image src={nome} width={42}
