@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 75px;
+    background: #161a2d;
+    transition: all 0.5s ease;
+    display: flex;
+    overflow-x: hidden;
+    padding: 20px 20px;
+    flex-direction: column;
+}
+.sidebar:hover{
+    width: 240px;
+}
+.sidebarhead{
+    display: flex;
+    align-items: center;
+    
+    
+}
+
+.listtitle{
+    color: #fff;
+    font-weight: 500;
+    margin: 10px 0;
+    white-space: nowrap; 
+}
+
+.sidebarlink  {
+    list-style: none;
+    margin-top: 20px;
+}
+
+/* .sidebarlink .menuseparator{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    transform: scaleX(1);
+    transform: translateY(-50%);
+    background: #4f52ba;
+    transform-origin: right;
+    transition-delay: 0.2s;
+} */
+
+ .userinfo{
+    
+    padding: 15px 10px;
+    margin-left: -12px;
+
+} 
+
+.userprofile{
+    
+    display: flex;
+    align-items: center;
+    color: #e5dede;
+    
+
+}
+
+.detalhesusuario{
+    font-size: 1rem;
+    font-weight: 600;
+    margin-left: 23px;
+    white-space: nowrap;
+}
+
+.listlink{
+    color: #dbd4d4e3;
+    font-weight: 500;
+    align-items: center;
+    gap: 0 22px;
+    display: flex;
+    padding: 15px 9px;
+    white-space: nowrap;
+    text-decoration: none;
+    
+}
+.listlink:hover{
+    background: #ffffff2d;
+    color: #fff;
+    border-radius: 4px;
+    
+}
