@@ -10,7 +10,8 @@ import { useRouter } from "next/navigation";
 import Image from "next/image"
 import ImagemEstoque from "@/app/images/imagem-estoque.jpg"
 import ImagemVetorLogin from "@/app/images/vetor-login.jpg"
-
+import mediaqueries from "../../styles/mediaqueries.module.css"
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 export default function Login() {
     const [error, setError] = useState("")
@@ -72,13 +73,14 @@ export default function Login() {
 
     return (
 
-        <main className="min-screen">
-            <div className="container-form-login">
+        <main className={`min-screen ${mediaqueries.minScreen}`}>
+            <div className={`container-form-login ${mediaqueries.containerFormLogin}`}>
                 <h1>Faça login na sua conta</h1>
                 <Image
                     src={ImagemVetorLogin}
                     width={250}
                     height={250}
+                    className={mediaqueries.imageVetor}
                 />
                 <Formik
                     initialValues={initialValues}
@@ -88,19 +90,23 @@ export default function Login() {
                     {({ values }) =>
                         <Form noValidate className="flex-form">
 
+
                             <InputComponent
                                 name="email"
                                 type="email"
                                 label="Email"
                                 required
-                                placeholder="emailfuncionario@gmail.com"
+                                placeholder="funcionario@gmail.com"
+                                className="input-email"
                             />
+
 
                             <InputComponent
                                 name="password"
                                 type="password"
                                 label="Senha"
                                 autoComplete="off"
+                                placeholder="senha"
                                 required
                             />
                             <div className="container-btn-login">
@@ -123,10 +129,10 @@ export default function Login() {
                         </Form>}
                 </Formik>
             </div>
-            <div className="container-imagem-estoque">
+            <div className={`container-imagem-estoque ${mediaqueries.containerImageEstoque}`}>
                 <Image
                     src={ImagemEstoque}
-                    className="image-estoque"
+                    className={`image-estoque ${mediaqueries.imageEstoque}`}
                 />
             </div>
         </main>

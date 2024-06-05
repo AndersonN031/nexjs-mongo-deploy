@@ -32,19 +32,32 @@ export default async function DashboardComponent() {
                             </div>
                             <div className="row">
                                 <div className="card total-in-stock">
-                                    <p className="title-card">Valor total em estoque</p>
-                                    <p className="number-card">{priceFormater(totalInventoryValue)}</p>
+                                    <div className="container-title-card">
+                                        <p className="title-card">Valor total em estoque</p>
+                                        <i className="bi bi-currency-dollar"></i>
+                                    </div>
+                                    <p className="number-card flexible-text">{priceFormater(totalInventoryValue)}</p>
                                 </div>
                                 <div className="card">
-                                    <p className="title-card">Diversidade de produtos</p>
+                                    <div className="container-title-card-white">
+                                        <p className="title-card">Diversidade de produtos</p>
+                                        <i className="bi bi-boxes"></i>
+
+                                    </div>
                                     <p className="number-card">{products.length}</p>
                                 </div>
                                 <div className="card">
-                                    <p className="title-card">Inventário Total</p>
+                                    <div className="container-title-card-white">
+                                        <p className="title-card">Inventário Total</p>
+                                        <i className="bi bi-box"></i>
+                                    </div>
                                     <p className="number-card">{totalInventory}</p>
                                 </div>
                                 <div className="card">
-                                    <p className="title-card">Produtos Acabando</p>
+                                    <div className="container-title-card-white">
+                                        <p className="title-card">Produtos Acabando</p>
+                                        <i className="bi bi-exclamation-triangle"></i>
+                                    </div>
                                     <p className="number-card">{productsRunningOut.length}</p>
                                 </div>
                             </div>

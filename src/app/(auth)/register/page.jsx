@@ -1,5 +1,4 @@
 "use client"
-
 import React, { useState } from "react";
 import { Form, Formik } from "formik"
 import InputComponent from "../../components/InputComponet"
@@ -10,10 +9,29 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import Image from "next/image"
 import ImagemEstoque from "@/app/images/imagem-estoque.jpg"
+import mediaqueries from "../../styles/mediaqueries.module.css"
+
 
 export default function Register() {
     const [error, setError] = useState("")
     const [isFormSubmitting, setFormSubmitting] = useState(false);
+
+    const expectedId = process.env.NEXT_PUBLIC_ID_EMPLOYEE;
+    const [inputId, setInputId] = useState('');
+    const [isUnlocked, setIsUnlocked] = useState(false);
+
+    const handleInputChange = (e) => {
+        const value = e.target.value;
+        setInputId(value);
+
+        // Verifica se o ID inserido corresponde ao ID esperado
+        if (value === expectedId) {
+            setIsUnlocked(true);
+        } else {
+            setIsUnlocked(false);
+        }
+    };
+
 
     const initialValues = {
         name: "",
@@ -71,8 +89,10 @@ export default function Register() {
                 setFormSubmitting(false);
             })
         } catch (error) {
-            setFormSubmitting(false);
             renderError("Erro ao criar conta, tente mais tarde.")
+        } finally {
+            setFormSubmitting(false);
+
         }
     }
 
@@ -87,8 +107,8 @@ export default function Register() {
     return (
         <>
             <ToastContainer />
-            <main className="min-screen">
-                <div className="container-imagem-estoque-register">
+            <main className={`min-screen ${mediaqueries.minScreenRegister}`}>
+                <div className={`container-imagem-estoque-register ${mediaqueries.containerImageEstoqueRegister}`}>
                     <Image
                         src={ImagemEstoque}
                         className="image-estoque image-estoque-resgister"
@@ -104,40 +124,54 @@ export default function Register() {
 
 
                         {({ values }) => <Form noValidate className="flex-form">
-                            <InputComponent
-                                name="name"
-                                type="name"
-                                label="Nome completo"
-                                required
-                                placeholder="Seu nome" />
-                            <InputComponent
-                                name="email"
-                                type="email"
-                                label="Email"
-                                required
-                                placeholder="example@gmail.com" />
-                            <InputComponent
-                                name="password"
+
+                            <input
                                 type="password"
-                                label="Senha"
-                                autoComplete="off"
-                                required />
-                            <div className="container-btn-login">
-                                <ButtonComponent
-                                    type="submit"
-                                    text={isFormSubmitting ? "Carregando..." : "Inscrever-se"}
-                                    disabled={isFormSubmitting}
-                                    className="btn-login" />
-                                {!values.name && !values.email && !values.password && error && (
-                                    <span className="text-red">{error}</span>
-                                )}
-                                <span>
-                                    Já Possui uma conta ?
-                                    <strong>
-                                        <Link href="/login" className="subscribe-link">Entre</Link>
-                                    </strong>
-                                </span>
-                            </div>
+                                id="idInput"
+                                value={inputId}
+                                placeholder="N.º empresarial"
+                                onChange={handleInputChange}
+                            />
+
+                            {isUnlocked && (
+                                <>
+                                    <InputComponent
+                                        name="name"
+                                        type="name"
+                                        label="Nome completo"
+                                        required
+                                        placeholder="Seu nome" />
+                                    <InputComponent
+                                        name="email"
+                                        type="email"
+                                        label="Email"
+                                        required
+                                        placeholder="example@gmail.com" />
+                                    <InputComponent
+                                        name="password"
+                                        type="password"
+                                        label="Senha"
+                                        autoComplete="off"
+                                        required /><div className="container-btn-login">
+                                        <ButtonComponent
+                                            type="submit"
+                                            text={isFormSubmitting ? "Carregando..." : "Inscrever-se"}
+                                            disabled={isFormSubmitting}
+                                            className="btn-login" />
+                                        {!values.name && !values.email && !values.password && error && (
+                                            <span className="text-red">{error}</span>
+                                        )}
+                                        <span>
+                                            Já Possui uma conta ?
+                                            <strong>
+                                                <Link href="/login" className="subscribe-link">Entre</Link>
+                                            </strong>
+                                        </span>
+                                    </div>
+                                </>
+
+                            )}
+
                         </Form>}
                     </Formik>
                 </div>
