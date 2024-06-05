@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-.sidebar{
+
+.sidebar {
     position: fixed;
     top: 0;
     left: 0;
@@ -12,24 +13,26 @@
     padding: 20px 20px;
     flex-direction: column;
 }
-.sidebar:hover{
+
+.sidebar:hover {
     width: 240px;
 }
-.sidebarhead{
+
+.sidebarhead {
     display: flex;
     align-items: center;
-    
-    
+
+
 }
 
-.listtitle{
+.listtitle {
     color: #fff;
     font-weight: 500;
     margin: 10px 0;
-    white-space: nowrap; 
+    white-space: nowrap;
 }
 
-.sidebarlink  {
+.sidebarlink {
     list-style: none;
     margin-top: 20px;
 }
@@ -47,30 +50,30 @@
     transition-delay: 0.2s;
 } */
 
- .userinfo{
-    
+.userinfo {
+
     padding: 15px 10px;
     margin-left: -12px;
 
-} 
+}
 
-.userprofile{
-    
+.userprofile {
+
     display: flex;
     align-items: center;
     color: #e5dede;
-    
+
 
 }
 
-.detalhesusuario{
+.detalhesusuario {
     font-size: 1rem;
     font-weight: 600;
     margin-left: 23px;
     white-space: nowrap;
 }
 
-.listlink{
+.listlink {
     color: #dbd4d4e3;
     font-weight: 500;
     align-items: center;
@@ -79,11 +82,13 @@
     padding: 15px 9px;
     white-space: nowrap;
     text-decoration: none;
-    
+    cursor: pointer;
+
 }
-.listlink:hover{
+
+.listlink:hover {
     background: #ffffff2d;
     color: #fff;
     border-radius: 4px;
-    
+
 }

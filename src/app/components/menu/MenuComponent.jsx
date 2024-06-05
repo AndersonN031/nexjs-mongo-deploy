@@ -31,23 +31,29 @@ export default function MenuComponent({ children }) {
                         </div>
                     </h4>
                     <li className={style.list}>
-                        <a className={style.listlink} href="#"><span className='icones'><i className='bx bxs-dashboard'></i></span>
+                        <a className={style.listlink} href="/dashboard"><span className='icones'><i className='bx bxs-dashboard'></i></span>
                             Dashboard</a>
                     </li>
                     <li className={style.list}>
-                        <a className={style.listlink} href="#"><span className='icones'><i className='bx bxs-package'></i></span>
+                        <a className={style.listlink} href="/dashboard/products"><span className='icones'><i className='bx bxs-package'></i></span>
                             produto</a>
                     </li>
                     <li className={style.list}>
-                        <a className={style.listlink} href="#"><span className='icones'><i className='bx bxs-hourglass'></i></span>
+                        <a className={style.listlink} href="/dashboard/lowStock"><span className='icones'><i className='bx bxs-hourglass'></i></span>
                             Produtos acabando</a>
                     </li>
                     <li className={style.list}>
-                        <a className={style.listlink} href="#"><span className='icones'><i className='bx bx-plus'></i></span>
+                        <a className={style.listlink} href="/dashboard/addProduct"><span className='icones'><i className='bx bx-plus'></i></span>
                             novo produto</a>
                     </li>
                     <li className={style.list}>
-                        <a className={style.listlink} href="#"><span className='icones'><i className='bx bx-log-out'></i></span>
+                        <a
+                            onClick={() => signOut()}
+                            className={`logout ${style.listlink}`}
+                        >
+                            <span className='icones'>
+                                <i className='bx bx-log-out'></i>
+                            </span>
                             Logout</a>
                     </li>
 
