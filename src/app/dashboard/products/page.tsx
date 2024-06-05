@@ -2,6 +2,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { fetchProducts } from "@/app/services/productService";
 import dayjs from "dayjs";
 import Link from "next/link";
+import MenuComponent from '@/app/components/menu/MenuComponent';
 
 
 // deixando a rota dinâmica para ser atualizada assim que alguma chamada HTTP for feita
@@ -17,7 +18,8 @@ export default async function ShowProductInTable() {
 
     return (
         <>
-        
+            <MenuComponent>
+
                 <div className="product-container">
                     {products.map((product: any, i: any) => (
                         <div className="product-card" key={i}>
@@ -42,7 +44,8 @@ export default async function ShowProductInTable() {
                         </div>
                     ))}
                 </div>
-            
+            </MenuComponent>
+
 
 
         </>

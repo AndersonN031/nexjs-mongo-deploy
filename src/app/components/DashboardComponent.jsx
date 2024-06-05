@@ -1,5 +1,5 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import MenuComponent from "./MenuComponent"
+import MenuComponent from "./menu/MenuComponent"
 import { fetchProducts } from '../services/productService';
 
 // chamando a api utilizando o get

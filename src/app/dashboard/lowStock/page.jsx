@@ -2,7 +2,7 @@
 import dayjs from "dayjs";
 import Link from "next/link";
 import { priceFormater } from "../products/page";
-import MenuComponent from "@/app/components/MenuComponent";
+import MenuComponent from "@/app/components/menu/MenuComponent";
 import { fetchProducts } from "@/app/services/productService";
 import LayoutAdmin from "@/app/components/LayoutAdminComponente";
 import { useEffect, useState } from "react";

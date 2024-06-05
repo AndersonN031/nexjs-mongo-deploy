@@ -1,22 +1,24 @@
 "use client"
+import Image from "next/image"
 import style from './style.module.css'
+import userImg from '../../images/user-example.png'
+import { signOut, useSession } from "next-auth/react";
 import 'boxicons/css/boxicons.min.css'
-import nome from '../images/user-example.png'
-import Image from 'next/image'
-export default function menutxt (){
+
+export default function MenuComponent({ children }) {
+    const { status, data: session } = useSession()
+
     return (
-        
-    <>
-            
+        <>
             <aside className={style.sidebar}>
                 <div className={style.sidebarhead}>
-                    <Image src={nome} width={42}
-                    height={42} alt={''} />
+                    <Image src={userImg} width={42}
+                        height={42} alt={''} />
                     <div className={style.userinfo}>
                         <div className={style.userprofile}>
 
                             <div className={style.detalhesusuario}></div>
-                            <h3>nome do usuario</h3>
+                            <h3>{session?.user?.name.split(" ")[0]}</h3>
                         </div>
                     </div>
                 </div>
@@ -51,6 +53,7 @@ export default function menutxt (){
 
                 </ul>
             </aside>
-            </>
-)
+            {children}
+        </>
+    )
 }
