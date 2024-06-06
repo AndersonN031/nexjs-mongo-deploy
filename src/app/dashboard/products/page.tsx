@@ -8,9 +8,9 @@ import MenuComponent from '@/app/components/menu/MenuComponent';
 // deixando a rota dinâmica para ser atualizada assim que alguma chamada HTTP for feita
 export const dynamic = 'force-dynamic';
 
-// export function priceFormater(number: number): string {
-//     return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-// }
+function priceFormater(number: number): string {
+    return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+}
 
 // criando uma table para exibir todos os produtos da API
 export default async function ShowProductInTable() {
@@ -25,7 +25,7 @@ export default async function ShowProductInTable() {
                         <div className="product-card" key={i}>
                             <div className="product-info">
                                 <h3 className="product-name">{product.name}</h3>
-                                <p className="product-price">{typeof product.price === 'number' ? product.price : 'Preço indisponível'}</p>
+                                <p className="product-price">{typeof product.price === 'number' ? priceFormater(product.price) : 'Preço indisponível'}</p>
                                 <div className="product-details">
                                     <p><span>Fabricante:</span> {product.manufacturer}</p>
                                     <p><span>Quantidade:</span> {product.quantity}</p>

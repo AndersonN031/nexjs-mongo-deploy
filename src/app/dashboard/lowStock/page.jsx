@@ -1,7 +1,6 @@
 "use client"
 import dayjs from "dayjs";
 import Link from "next/link";
-import { priceFormater } from "../products/page";
 import MenuComponent from "@/app/components/menu/MenuComponent";
 import { fetchProducts } from "@/app/services/productService";
 import LayoutAdmin from "@/app/components/LayoutAdminComponente";
@@ -32,6 +31,10 @@ export default function LowStockProduct() {
     const filteredProducts = lowStockProducts.filter((product) =>
         product.name.toLowerCase().includes(lowerSearch)
     );
+
+    function priceFormater(number) {
+        return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
 
     return (
         <>
