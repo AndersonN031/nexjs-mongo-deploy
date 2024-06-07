@@ -26,6 +26,33 @@
 
 }
 
+@media screen and (max-width: 730px) {
+
+    .containerForm {
+        margin-left: 10%;
+    }
+
+    .inputForm[type="text"],
+    .inputForm[type="number"],
+    .inputForm[type="date"] {
+        width: 70%;
+    }
+
+    .btnSubmit {
+        width: 40%;
+        padding: 0;
+    }
+
+    .customSelect {
+        width: 70%;
+    }
+
+    .btnSave {
+        width: 70%;
+    }
+
+}
+
 @media screen and (max-width: 500px) {
     .imageVetor {
         width: 190px;

@@ -54,7 +54,7 @@ export default function MenuComponent({ children }) {
                             <span className='icones'>
                                 <i className='bx bx-log-out'></i>
                             </span>
-                            Logout</a>
+                            Sair</a>
                     </li>
 
                 </ul>

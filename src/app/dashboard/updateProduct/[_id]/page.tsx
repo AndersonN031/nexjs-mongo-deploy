@@ -5,7 +5,7 @@ import { fetchProductData, handleUpdateProduct } from "@/app/controllers/product
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
-
+import mediaquerie from "../../../styles/mediaqueries.module.css"
 export default function UpdateProduct({ params }: any) {
     const { _id } = params;
     const [product, setProduct] = useState({
@@ -58,7 +58,7 @@ export default function UpdateProduct({ params }: any) {
                             e.preventDefault();
                             updateProduct();
                         }}>
-                            <div className="container-form">
+                            <div className={`container-form ${mediaquerie.containerForm}`}>
                                 <div className="form-input">
                                     <label>Nome:</label>
                                     <input
@@ -66,7 +66,7 @@ export default function UpdateProduct({ params }: any) {
                                         name="name"
                                         value={product.name}
                                         onChange={handleChange}
-                                        className="input-form"
+                                        className={`input-form ${mediaquerie.inputForm}`}
                                     />
                                 </div>
                                 <div className="form-input">
@@ -76,7 +76,7 @@ export default function UpdateProduct({ params }: any) {
                                         name="price"
                                         value={product.price}
                                         onChange={handleChange}
-                                        className="input-form"
+                                        className={`input-form ${mediaquerie.inputForm}`}
                                     />
                                 </div>
                                 <div className="form-input">
@@ -86,7 +86,7 @@ export default function UpdateProduct({ params }: any) {
                                         name="manufacturer"
                                         value={product.manufacturer}
                                         onChange={handleChange}
-                                        className="input-form"
+                                        className={`input-form ${mediaquerie.inputForm}`}
                                     />
                                 </div>
                                 <div>
@@ -96,7 +96,7 @@ export default function UpdateProduct({ params }: any) {
                                         name="quantity"
                                         value={product.quantity}
                                         onChange={handleChange}
-                                        className="input-form"
+                                        className={`input-form ${mediaquerie.inputForm}`}
                                     />
                                 </div>
                                 <div className="form-input">
@@ -106,7 +106,7 @@ export default function UpdateProduct({ params }: any) {
                                         name="manufacturingDate"
                                         value={product.manufacturingDate}
                                         onChange={handleChange}
-                                        className="input-form"
+                                        className={`input-form ${mediaquerie.inputForm}`}
                                     />
                                 </div>
                                 <div className="form-input">
@@ -116,10 +116,10 @@ export default function UpdateProduct({ params }: any) {
                                         name="dueDate"
                                         value={product.dueDate}
                                         onChange={handleChange}
-                                        className="input-form"
+                                        className={`input-form ${mediaquerie.inputForm}`}
                                     />
                                 </div>
-                                <button type="submit" className="btn-save">Salvar</button>
+                                <button type="submit" className={`btn-save ${mediaquerie.btnSave }`}>Salvar</button>
                             </div>
                         </form>
                     </div>

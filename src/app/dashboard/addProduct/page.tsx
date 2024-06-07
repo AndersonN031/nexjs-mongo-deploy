@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { addProduct } from '@/app/services/productService';
 import LayoutAdmin from '@/app/components/LayoutAdminComponente';
-import dayjs from 'dayjs';
+import mediaquerie from "../../styles/mediaqueries.module.css"
 import MenuComponent from '@/app/components/menu/MenuComponent';
 
 
@@ -72,7 +72,7 @@ const ProductForm = () => {
                 <MenuComponent>
 
                     <form onSubmit={handleSubmit}>
-                        <div className="container-form">
+                        <div className={`container-form ${mediaquerie.containerForm}`}>
                             <div className="form-input">
                                 <label htmlFor="productName">Nome do Produto:</label>
                                 <input
@@ -80,7 +80,7 @@ const ProductForm = () => {
                                     id="productName"
                                     value={productName}
                                     onChange={(e) => setProductName(e.target.value)}
-                                    className="input-form"
+                                    className={`input-form ${mediaquerie.inputForm}`}
                                     required
                                 />
                             </div>
@@ -91,7 +91,7 @@ const ProductForm = () => {
                                     id="productPrice"
                                     value={productPrice}
                                     onChange={(e) => setProductPrice(e.target.value)}
-                                    className="input-form"
+                                    className={`input-form ${mediaquerie.inputForm}`}
                                     required
                                 />
                             </div>
@@ -102,7 +102,7 @@ const ProductForm = () => {
                                     id="manufacturer"
                                     value={manufacturer}
                                     onChange={(e) => setManufacturer(e.target.value)}
-                                    className="input-form"
+                                    className={`input-form ${mediaquerie.inputForm}`}
                                     required
                                 />
                             </div>
@@ -113,13 +113,16 @@ const ProductForm = () => {
                                     id="productQuantity"
                                     value={productQuantity}
                                     onChange={(e) => setProductQuantity(e.target.value)}
-                                    className="input-form"
+                                    className={`input-form ${mediaquerie.inputForm}`}
                                     required
                                 />
                             </div>
                             <div className="form-input">
                                 <label htmlFor="manufacturingDate">Categoria:</label>
-                                <select onChange={(e) => setProductCategory(e.target.value)} required>
+                                <select
+                                    onChange={(e) => setProductCategory(e.target.value)} required
+                                    className={`custom-select ${mediaquerie.customSelect}`}
+                                >
                                     <option value="" hidden>Selecione uma opção</option>
                                     <option value="Bebidas">Bebidas</option>
                                     <option value="Alimentos">Alimentos</option>
@@ -136,7 +139,7 @@ const ProductForm = () => {
                                     id="manufacturingDate"
                                     value={manufacturingDate}
                                     onChange={(e) => setManufacturingDate(e.target.value)}
-                                    className="input-form"
+                                    className={`input-form ${mediaquerie.inputForm}`}
                                     required
                                 />
                             </div>
@@ -147,13 +150,20 @@ const ProductForm = () => {
                                     id="dueDate"
                                     value={dueDate}
                                     onChange={(e) => setDueDate(e.target.value)}
-                                    className="input-form"
+                                    className={`input-form ${mediaquerie.inputForm}`}
                                     required
                                 />
                             </div>
                             <div className="group-btn-form">
-                                <button className="btn-submit" type="submit">Adicionar Produto</button>
-                                <Link href="/dashboard/products" className="btn-submit-cancel">
+                                <button
+                                    className={`btn-submit ${mediaquerie.btnSubmit}`}
+                                    type="submit"
+
+                                >Adicionar Produto</button>
+                                <Link
+                                    href="/dashboard/products"
+                                    className={`btn-submit-cancel ${mediaquerie.btnSubmitCancel}`}
+                                >
                                     Cancelar
                                 </Link>
                             </div>
