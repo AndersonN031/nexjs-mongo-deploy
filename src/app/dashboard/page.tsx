@@ -1,5 +1,5 @@
 
-import DashboardComponent from "../components/DashboardComponent"
+import DashboardComponent from "../components/dashboard/DashboardComponent"
 import React from "react"
 import LayoutAdmin from "../components/LayoutAdminComponente";
 

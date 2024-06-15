@@ -86,6 +86,14 @@
 
 }
 
+.list button {
+    border: none;
+    width: 100%;
+    background-color: #161a2d;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
 .listlink:hover {
     background: #ffffff2d;
     color: #fff;

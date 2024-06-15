@@ -47,14 +47,14 @@ export default function MenuComponent({ children }) {
                             novo produto</a>
                     </li>
                     <li className={style.list}>
-                        <a
+                        <button
                             onClick={() => signOut()}
                             className={`logout ${style.listlink}`}
                         >
                             <span className='icones'>
                                 <i className='bx bx-log-out'></i>
                             </span>
-                            Sair</a>
+                            Sair</button>
                     </li>
 
                 </ul>

@@ -1,0 +1,40 @@
+@media (max-width: 1385px) {
+    .gridDashboard {
+        margin-left: 10%;
+    }
+
+    .dashboardUser {
+        font-size: 1.2rem;
+    }
+
+    .titleCard {
+        font-size: 1rem;
+    }
+
+    .numberCard {
+        font-size: 1.5rem;
+    }
+
+    .containerTitleCard,
+    .containerTitleCardWhite {
+        margin-bottom: 5px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .showInfo {
+        width: 90%;
+    }
+
+    .row {
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+}
